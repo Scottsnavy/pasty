@@ -1,37 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cloudflare Test</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f5f5f5;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bud's Tees</title>
 
-    .hero {
-      width: 200px;
-      height: 200px;
-      background: green;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-weight: bold;
-      border-radius: 8px;
-    }
-  </style>
+<style>
+:root {
+    --bg: #0f172a;
+    --card: #111827;
+    --accent: #38bdf8;
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+p.lead {
+    color: var(--muted);
+    font-size: 1.2rem;
+}
+
+.cta {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #000;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 12px;
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 20px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+</style>
 </head>
+
 <body>
-  <div class="hero">
-    IT WORKS
-  </div>
+
+<header class="container">
+    <h1>Bud's Tees</h1>
+    <p class="lead">Simple. Clean. Custom apparel that actually looks good.</p>
+    <a href="#" class="cta">Shop Now</a>
+</header>
+
+<section class="container">
+    <div class="grid">
+        <div class="card">
+            <h2>Premium Quality</h2>
+            <p>Soft, durable materials designed for everyday wear.</p>
+        </div>
+        <div class="card">
+            <h2>Custom Designs</h2>
+            <p>Unique prints you won’t find anywhere else.</p>
+        </div>
+        <div class="card">
+            <h2>Fast Shipping</h2>
+            <p>Quick turnaround so you get your gear ASAP.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2026 Bud's Tees — All rights reserved
+</footer>
+
 </body>
 </html>
-
