@@ -10,146 +10,117 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;background:#0f0f0f;color:#fff;overflow-x:hidden}
+#menu-toggle{display:none}
 
 /* NAV */
-.menu-btn{
- position:fixed;top:20px;left:20px;z-index:1000;
- font-size:26px;cursor:pointer
+.nav{
+ position:fixed;top:0;left:0;width:100%;
+ display:flex;justify-content:space-between;align-items:center;
+ padding:16px 20px;background:rgba(0,0,0,.6);
+ backdrop-filter:blur(8px);z-index:10
 }
+.logo{font-family:Playfair Display,serif}
+.menu-btn{font-size:26px;cursor:pointer}
+
+/* SIDEBAR */
 .sidebar{
- position:fixed;top:0;left:-260px;height:100%;
- width:260px;background:linear-gradient(180deg,#111,#1c1c1c);
- padding:80px 20px;transition:.4s;z-index:999
+ position:fixed;top:0;left:-260px;width:260px;height:100%;
+ padding:80px 20px;background:#111;transition:.4s;z-index:9
 }
-.sidebar a{
- display:block;color:#fff;text-decoration:none;
- margin:20px 0;font-size:18px;opacity:.8
+.sidebar a{display:block;margin:20px 0;color:#fff;text-decoration:none;opacity:.8}
+#menu-toggle:checked~.sidebar{left:0}
+
+/* OVERLAY */
+.overlay{
+ position:fixed;inset:0;background:rgba(0,0,0,.5);
+ opacity:0;pointer-events:none;transition:.3s;z-index:8
 }
-.sidebar a:hover{opacity:1}
-.sidebar.active{left:0}
+#menu-toggle:checked~.overlay{opacity:1;pointer-events:auto}
 
 /* HERO */
 .hero{
- height:100vh;display:flex;align-items:center;
- justify-content:center;text-align:center;
- background:linear-gradient(135deg,#000,rgba(0,0,0,.4)),
- url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092') center/cover;
+ height:100vh;min-height:100svh;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;padding-top:60px;overflow:hidden;position:relative
 }
+
+/* SLIDES */
+.slides{position:absolute;inset:0}
+.slides img{
+ position:absolute;top:0;left:0;
+ width:100vw;height:100vh;
+ object-fit:cover;object-position:center;
+ opacity:0;animation:kb 18s infinite
+}
+.slides img:nth-child(1){animation-delay:0s}
+.slides img:nth-child(2){animation-delay:6s}
+.slides img:nth-child(3){animation-delay:12s}
+
+/* OVERLAY */
+.hero::after{
+ content:"";position:absolute;inset:0;
+ background:linear-gradient(135deg,#000,rgba(0,0,0,.4))
+}
+
+/* TEXT */
+.hero-content{position:relative;z-index:2}
 .hero h1{
  font-family:Playfair Display,serif;
- font-size:3.2rem;margin-bottom:10px
+ font-size:3rem;margin-bottom:10px
 }
-.hero p{opacity:.8;margin-bottom:20px}
+.hero p{opacity:.85;margin-bottom:20px}
 
+/* BTN */
 .btn{
  padding:12px 26px;
  background:linear-gradient(45deg,#c59d5f,#e6c27a);
- border:none;color:#000;text-decoration:none;
- transition:.3s
-}
-.btn:hover{transform:translateY(-2px)}
-
-/* MENU GRID */
-.section{padding:70px 20px;text-align:center}
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
- gap:20px;max-width:1000px;margin:auto
-}
-.card{
- position:relative;overflow:hidden
-}
-.card img{
- width:100%;height:260px;object-fit:cover;
- transition:.4s
-}
-.card:hover img{transform:scale(1.08)}
-.card h3{margin-top:10px}
-
-/* GRADIENT STRIP */
-.strip{
- padding:60px 20px;
- background:linear-gradient(90deg,#1a1a1a,#2a2a2a);
+ color:#000;text-decoration:none
 }
 
-/* INFO */
-.info{
- display:flex;flex-wrap:wrap;
- justify-content:center;gap:40px;
- padding:60px 20px
-}
-.info div{max-width:200px}
-
-/* FOOTER */
-footer{
- padding:20px;text-align:center;
- opacity:.6;font-size:14px
+/* ANIMATION */
+@keyframes kb{
+ 0%{opacity:0;transform:scale(1)}
+ 10%{opacity:1}
+ 40%{opacity:1}
+ 50%{opacity:0}
+ 100%{opacity:0;transform:scale(1.15)}
 }
 </style>
 </head>
 
 <body>
 
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<input type="checkbox" id="menu-toggle">
 
-<div class="sidebar" id="sidebar">
-  <a href="#">Menu</a>
-  <a href="#">About</a>
-  <a href="#">Location</a>
+<div class="nav">
+ <div class="logo">LOGO</div>
+ <label for="menu-toggle" class="menu-btn">☰</label>
 </div>
 
+<div class="sidebar">
+ <label for="menu-toggle">✕ Close</label>
+ <a href="#">Menu</a>
+ <a href="#">About</a>
+ <a href="#">Location</a>
+</div>
+
+<label for="menu-toggle" class="overlay"></label>
+
 <section class="hero">
- <div>
+
+ <div class="slides">
+  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
+  <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc">
+  <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
+ </div>
+
+ <div class="hero-content">
   <h1>Restaurant Name</h1>
   <p>Bold flavor. Clean design.</p>
   <a href="#" class="btn">View Menu</a>
  </div>
+
 </section>
-
-<section class="section">
- <h2>Signature</h2>
- <div class="grid">
-  <div class="card">
-   <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc">
-   <h3>Steak</h3>
-  </div>
-  <div class="card">
-   <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38">
-   <h3>Pizza</h3>
-  </div>
-  <div class="card">
-   <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
-   <h3>Pasta</h3>
-  </div>
- </div>
-</section>
-
-<section class="strip">
- <p style="max-width:600px;margin:auto">
-  Crafted simply. Designed to impress.
- </p>
-</section>
-
-<section class="info">
- <div>
-  <h3>Location</h3>
-  <p>Boston, MA</p>
- </div>
- <div>
-  <h3>Hours</h3>
-  <p>11am – 10pm</p>
- </div>
-</section>
-
-<footer>
- © 2026 Restaurant
-</footer>
-
-<script>
-function toggleMenu(){
- document.getElementById("sidebar").classList.toggle("active");
-}
-</script>
 
 </body>
 </html>
