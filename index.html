@@ -1,126 +1,179 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Restaurant</title>
+/* RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+html {
+  scroll-behavior: smooth;
+}
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:#0f0f0f;color:#fff;overflow-x:hidden}
-#menu-toggle{display:none}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5;
+  color: #111;
+  background: #fff;
+}
+
+/* GLOBAL */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #555;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fff;
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-top: 1rem;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
 
 /* NAV */
-.nav{
- position:fixed;top:0;left:0;width:100%;
- display:flex;justify-content:space-between;align-items:center;
- padding:16px 20px;background:rgba(0,0,0,.6);
- backdrop-filter:blur(8px);z-index:10
+.nav {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  z-index: 1000;
 }
-.logo{font-family:Playfair Display,serif}
-.menu-btn{font-size:26px;cursor:pointer}
 
-/* SIDEBAR */
-.sidebar{
- position:fixed;top:0;left:-260px;width:260px;height:100%;
- padding:80px 20px;background:#111;transition:.4s;z-index:9
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
 }
-.sidebar a{display:block;margin:20px 0;color:#fff;text-decoration:none;opacity:.8}
-#menu-toggle:checked~.sidebar{left:0}
 
-/* OVERLAY */
-.overlay{
- position:fixed;inset:0;background:rgba(0,0,0,.5);
- opacity:0;pointer-events:none;transition:.3s;z-index:8
+.nav a {
+  text-decoration: none;
+  color: #111;
+  margin-left: 1.25rem;
+  font-size: 0.95rem;
 }
-#menu-toggle:checked~.overlay{opacity:1;pointer-events:auto}
 
 /* HERO */
-.hero{
- height:100vh;min-height:100svh;
- display:flex;align-items:center;justify-content:center;
- text-align:center;padding-top:60px;overflow:hidden;position:relative
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  background: url('images/hero.jpg') center/cover no-repeat;
+  color: #fff;
+  position: relative;
 }
 
-/* SLIDES */
-.slides{position:absolute;inset:0}
-.slides img{
- position:absolute;top:0;left:0;
- width:100vw;height:100vh;
- object-fit:cover;object-position:center;
- opacity:0;animation:kb 18s infinite
-}
-.slides img:nth-child(1){animation-delay:0s}
-.slides img:nth-child(2){animation-delay:6s}
-.slides img:nth-child(3){animation-delay:12s}
-
-/* OVERLAY */
-.hero::after{
- content:"";position:absolute;inset:0;
- background:linear-gradient(135deg,#000,rgba(0,0,0,.4))
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
 }
 
-/* TEXT */
-.hero-content{position:relative;z-index:2}
-.hero h1{
- font-family:Playfair Display,serif;
- font-size:3rem;margin-bottom:10px
-}
-.hero p{opacity:.85;margin-bottom:20px}
-
-/* BTN */
-.btn{
- padding:12px 26px;
- background:linear-gradient(45deg,#c59d5f,#e6c27a);
- color:#000;text-decoration:none
+.hero-content {
+  position: relative;
+  max-width: 600px;
 }
 
-/* ANIMATION */
-@keyframes kb{
- 0%{opacity:0;transform:scale(1)}
- 10%{opacity:1}
- 40%{opacity:1}
- 50%{opacity:0}
- 100%{opacity:0;transform:scale(1.15)}
+.hero h1,
+.hero p {
+  color: #fff;
 }
-</style>
-</head>
 
-<body>
+/* SERVICES */
+.services .grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
 
-<input type="checkbox" id="menu-toggle">
+/* ABOUT */
+.split {
+  display: grid;
+  gap: 2rem;
+}
 
-<div class="nav">
- <div class="logo">LOGO</div>
- <label for="menu-toggle" class="menu-btn">☰</label>
-</div>
+.split img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-<div class="sidebar">
- <label for="menu-toggle">✕ Close</label>
- <a href="#">Menu</a>
- <a href="#">About</a>
- <a href="#">Location</a>
-</div>
+/* REVIEWS */
+.reviews {
+  background: #f9f9f9;
+}
 
-<label for="menu-toggle" class="overlay"></label>
+/* CTA */
+.cta {
+  text-align: center;
+  background: #111;
+  color: #fff;
+}
 
-<section class="hero">
+.cta h2 {
+  color: #fff;
+}
 
- <div class="slides">
-  <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092">
-  <img src="https://images.unsplash.com/photo-1559847844-d721426d6edc">
-  <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe">
- </div>
+/* CONTACT */
+.contact {
+  text-align: center;
+}
 
- <div class="hero-content">
-  <h1>Restaurant Name</h1>
-  <p>Bold flavor. Clean design.</p>
-  <a href="#" class="btn">View Menu</a>
- </div>
+/* FOOTER */
+.footer {
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid #eee;
+}
 
-</section>
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
 
-</body>
-</html>
+  .split {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
