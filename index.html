@@ -28,10 +28,11 @@ linear-gradient(135deg,#0b0f14,#111927)
   <div class="container nav-inner">
     <div class="logo">Buckley Brothers</div>
     <div class="nav-links">
-      <a href="#">Services</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-      <a href="tel:16175551234" class="cta">Call</a>
+      <div class="nav-right">
+  <label for="menu-toggle" class="hamburger">
+    <span></span><span></span><span></span>
+  </label>
+</div>
     </div>
   </div>
 </nav>
@@ -126,3 +127,109 @@ footer{text-align:center;padding:40px 0;color:#6b7c8f;font-size:14px}
 <footer>
   © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
+
+<style>
+/* HAMBURGER */
+.menu-toggle{display:none}
+.hamburger{
+width:28px;height:20px;position:relative;cursor:pointer
+}
+.hamburger span{
+position:absolute;height:2px;width:100%;
+background:#fff;left:0;transition:.3s
+}
+.hamburger span:nth-child(1){top:0}
+.hamburger span:nth-child(2){top:9px}
+.hamburger span:nth-child(3){bottom:0}
+
+/* FULLSCREEN MENU */
+.menu{
+position:fixed;inset:0;
+background:linear-gradient(135deg,#0a0f1f,#0a84ff);
+display:flex;align-items:center;justify-content:center;
+flex-direction:column;gap:30px;
+opacity:0;pointer-events:none;
+transition:.4s;
+z-index:20;
+}
+
+/* MENU LINKS */
+.menu a{
+font-size:32px;font-weight:600;
+color:#fff;text-decoration:none;
+position:relative;
+}
+.menu a:after{
+content:"";position:absolute;left:0;bottom:-6px;
+width:0;height:2px;background:#fff;transition:.3s
+}
+.menu a:hover:after{width:100%}
+
+/* TOGGLE OPEN */
+.menu-toggle:checked ~ .menu{
+opacity:1;pointer-events:auto;
+}
+
+/* ANIMATE HAMBURGER → X */
+.menu-toggle:checked + label span:nth-child(1){
+transform:rotate(45deg);top:9px
+}
+.menu-toggle:checked + label span:nth-child(2){
+opacity:0
+}
+.menu-toggle:checked + label span:nth-child(3){
+transform:rotate(-45deg);bottom:9px
+}
+
+/* PLACE IN NAV */
+.nav-right{
+display:flex;align-items:center;gap:20px
+}
+
+/* GRADIENT TEXT LOGO UPGRADE */
+.logo{
+background:linear-gradient(90deg,#0a84ff,#6dd5fa);
+-webkit-background-clip:text;
+color:transparent;
+font-weight:700;
+}
+
+/* HERO UPGRADE (high fashion feel) */
+.hero{
+position:relative;
+overflow:hidden;
+}
+.hero:after{
+content:"";position:absolute;inset:0;
+background:linear-gradient(120deg,transparent,#0a84ff22,transparent);
+animation:shine 6s linear infinite;
+}
+
+@keyframes shine{
+0%{transform:translateX(-100%)}
+100%{transform:translateX(100%)}
+}
+
+/* MOBILE TWEAK */
+@media(max-width:768px){
+.menu a{font-size:26px}
+}
+</style>
+
+<!-- TOGGLE -->
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
+
+<!-- NAV RIGHT (replace your nav-links with this) -->
+<div class="nav-right">
+  <label for="menu-toggle" class="hamburger">
+    <span></span><span></span><span></span>
+  </label>
+</div>
+
+<!-- FULLSCREEN MENU -->
+<div class="menu">
+  <a href="#">Services</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+  <a href="tel:16175551234">Call Now</a>
+</div>
