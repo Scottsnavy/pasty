@@ -3,105 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buckley Brothers Plumbing | Malden MA</title>
-<meta name="description" content="24/7 emergency plumbing in Malden. Fast, reliable, local service. Call now.">
-
+<title>Buckley Brothers Plumbing | Malden, MA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#111;line-height:1.5}
-h1,h2{margin:0 0 10px}
-.container{max-width:1100px;margin:auto;padding:20px}
-.hero{
-background:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600') center/cover no-repeat;
-color:#fff;position:relative}
-.hero::after{content:"";position:absolute;inset:0;background:rgba(10,37,64,.75)}
-.hero-content{position:relative;padding:100px 20px;text-align:center}
-.hero h1{font-size:42px}
-.btn{display:inline-block;padding:14px 22px;margin:10px;border-radius:6px;text-decoration:none;font-weight:600}
-.btn-primary{background:#2ecc71;color:#000}
-.btn-secondary{background:#fff;color:#000}
-.section{padding:70px 20px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;color:#111;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{width:100%;display:block}
+.container{max-width:1100px;margin:auto;padding:0 20px}
+
+/* NAV */
+nav{position:fixed;width:100%;top:0;background:#fff;border-bottom:1px solid #eee;z-index:1000}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{font-weight:700;font-size:20px}
+.cta{background:#0a84ff;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600}
+
+/* HERO */
+.hero{height:100vh;background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070') center/cover no-repeat;display:flex;align-items:center}
+.hero-overlay{background:rgba(0,0,0,0.55);width:100%;height:100%;display:flex;align-items:center}
+.hero h1{color:#fff;font-size:48px;margin-bottom:20px}
+.hero p{color:#ddd;font-size:18px;margin-bottom:30px;max-width:500px}
+
+/* SECTIONS */
+section{padding:90px 0}
+h2{font-size:32px;margin-bottom:20px}
 .grid{display:grid;gap:20px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.card{padding:22px;border:1px solid #eee;border-radius:10px;background:#fff}
-.trust{background:#f8f9fb;text-align:center}
-.badges{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;margin-top:15px}
-.badge{padding:10px 16px;border:1px solid #ddd;border-radius:999px;background:#fff;font-size:14px}
-.sticky-call{position:fixed;bottom:0;width:100%;background:#2ecc71;text-align:center;padding:14px;font-weight:700}
-a{color:inherit}
-footer{background:#111;color:#fff;text-align:center;padding:30px}
+.services{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{border:1px solid #eee;border-radius:10px;padding:20px;background:#fff}
+.card img{border-radius:8px;margin-bottom:15px}
+.card h3{margin-bottom:10px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.about img{border-radius:12px}
+
+/* CONTACT */
+.contact{background:#f9f9f9;border-top:1px solid #eee}
+.contact-box{max-width:500px}
+.phone{font-size:28px;font-weight:700;margin:15px 0}
+
+/* FOOTER */
+footer{padding:40px 0;text-align:center;font-size:14px;color:#666}
+
+@media(max-width:768px){
+.hero h1{font-size:34px}
+.about{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">Buckley Brothers Plumbing</div>
+    <a href="tel:16175551234" class="cta">Call Now</a>
+  </div>
+</nav>
+
 <section class="hero">
-<div class="hero-content container">
-<h1>24/7 Emergency Plumbing in Malden</h1>
-<p>Fast response. Fair pricing. Trusted local plumbers.</p>
-<a href="tel:17813227509" class="btn btn-primary">Call Now</a>
-<a href="#contact" class="btn btn-secondary">Request Service</a>
-</div>
+  <div class="hero-overlay">
+    <div class="container">
+      <h1>Malden’s Trusted Plumbing Experts</h1>
+      <p>Fast, reliable plumbing services for homes and businesses. Licensed. Local. Always on call.</p>
+      <a href="tel:16175551234" class="cta">Call (617) 555-1234</a>
+    </div>
+  </div>
 </section>
 
-<section class="section trust">
-<div class="container">
-<h2>Trusted Local Experts</h2>
-<p>Serving Malden & North Shore for 20+ years</p>
-<div class="badges">
-<div class="badge">Licensed & Insured</div>
-<div class="badge">24/7 Emergency</div>
-<div class="badge">Fast Response</div>
-<div class="badge">5-Star Reviews</div>
-</div>
-</div>
+<section>
+  <div class="container">
+    <h2>Our Services</h2>
+    <div class="grid services">
+      
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070">
+        <h3>Emergency Repairs</h3>
+        <p>24/7 response for burst pipes, leaks, and urgent issues.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2070">
+        <h3>Drain Cleaning</h3>
+        <p>Clogged sink or sewer line? We clear it fast.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125?q=80&w=2070">
+        <h3>Water Heaters</h3>
+        <p>Install, repair, and replace all major systems.</p>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=2070">
+        <h3>Bathroom Plumbing</h3>
+        <p>Toilets, faucets, showers—done right the first time.</p>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<section class="section">
-<div class="container">
-<h2>Plumbing Services</h2>
-<div class="grid grid-3">
-<div class="card"><strong>Emergency Repairs</strong><br>Immediate help when you need it most.</div>
-<div class="card"><strong>Drain Cleaning</strong><br>Clear tough clogs fast.</div>
-<div class="card"><strong>Water Heaters</strong><br>Repair & install.</div>
-<div class="card"><strong>Leak Detection</strong><br>Find and fix hidden leaks.</div>
-<div class="card"><strong>Sewer Lines</strong><br>Reliable long-term solutions.</div>
-</div>
-</div>
+<section>
+  <div class="container about">
+    <div>
+      <h2>Why Choose Us</h2>
+      <p>Family-owned and proudly serving Malden and surrounding areas. We show up on time, fix it right, and stand behind our work.</p>
+      <p class="phone">(617) 555-1234</p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2070">
+  </div>
 </section>
 
-<section class="section">
-<div class="container">
-<h2>What Customers Say</h2>
-<div class="grid grid-3">
-<div class="card">“Fast, fair, and reliable.”</div>
-<div class="card">“Great service and pricing.”</div>
-<div class="card">“Highly recommend.”</div>
-</div>
-</div>
-</section>
-
-<section class="section trust">
-<div class="container">
-<h2>Service Area</h2>
-<p>Malden, Medford, Everett, Melrose, Revere</p>
-</div>
-</section>
-
-<section id="contact" class="section">
-<div class="container" style="text-align:center">
-<h2>Need a Plumber Now?</h2>
-<p>Call for immediate service or request a callback.</p>
-<a href="tel:17813227509" class="btn btn-primary">Call (781) 322-7509</a>
-</div>
+<section class="contact">
+  <div class="container">
+    <h2>Get Help Now</h2>
+    <div class="contact-box">
+      <p>Need a plumber today? Call now for fast service.</p>
+      <div class="phone">(617) 555-1234</div>
+      <a href="tel:16175551234" class="cta">Call Now</a>
+    </div>
+  </div>
 </section>
 
 <footer>
-<p>Buckley Brothers Plumbing • Malden, MA • 24/7 Service</p>
+  <div class="container">
+    © 2026 Buckley Brothers Plumbing • Malden, MA
+  </div>
 </footer>
-
-<div class="sticky-call">
-<a href="tel:17813227509">Call Now — (781) 322-7509</a>
-</div>
 
 </body>
 </html>
