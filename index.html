@@ -7,26 +7,32 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
---bg:#0b0f14;--text:#eaf0f6;--muted:#9fb0c3;--card:#ffffff08;
---border:#ffffff0d;--accent:#0a84ff;--nav:#0b0f14cc
+--bg:#0b0f14;--text:#eaf0f6;--muted:#9fb0c3;
+--card:#ffffff08;--border:#ffffff0d;--accent:#0a84ff;--nav:#0b0f14cc
 }
 .light{
---bg:#ffffff;--text:#111;--muted:#5b6b7c;--card:#00000005;
---border:#00000010;--accent:#0a84ff;--nav:#ffffffcc
+--bg:#ffffff;--text:#111;--muted:#5b6b7c;
+--card:#00000005;--border:#00000010;--accent:#0a84ff;--nav:#ffffffcc
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);transition:.3s}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
 .container{max-width:1100px;margin:auto;padding:0 20px}
 
 /* NAV */
-nav{position:sticky;top:0;background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:10;transition:.3s}
+nav{position:sticky;top:0;background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:10}
 .nav{display:flex;justify-content:space-between;align-items:center;height:70px}
 .logo{font-weight:700}
 .actions{display:flex;gap:10px;align-items:center}
 .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:6px;font-weight:600}
-.toggle{
-cursor:pointer;border:1px solid var(--border);padding:8px 10px;border-radius:6px;
+
+/* CSS toggle (no JS) */
+#mode{display:none}
+.switch{
+cursor:pointer;border:1px solid var(--border);
+padding:8px 12px;border-radius:6px;font-size:12px
 }
+#mode:checked ~ *{--bg:#ffffff;--text:#111;--muted:#5b6b7c;
+--card:#00000005;--border:#00000010;--nav:#ffffffcc}
 
 /* HERO */
 .hero{
@@ -40,7 +46,7 @@ background:var(--accent);opacity:.15;filter:blur(120px);
 top:-100px;left:-100px;animation:float 12s ease-in-out infinite alternate;
 }
 .hero h1{font-size:52px;margin-bottom:15px;animation:fadeUp .8s ease}
-.hero p{color:var(--muted);max-width:500px;margin-bottom:25px;animation:fadeUp 1s ease}
+.hero p{color:var(--muted);max-width:500px;margin-bottom:25px}
 
 /* SECTIONS */
 section{padding:90px 0}
@@ -59,7 +65,30 @@ opacity:0;transition:.4s
 }
 .card:hover:before{opacity:.2}
 .card:hover{transform:translateY(-6px);border-color:var(--accent)}
-.icon{margin-bottom:10px}
+
+/* CLEAN ICONS */
+.icon{
+width:26px;height:26px;margin-bottom:12px;position:relative;
+border:2px solid var(--accent);border-radius:6px
+}
+.icon.pipe:after{
+content:"";position:absolute;width:14px;height:2px;background:var(--accent);
+top:50%;left:50%;transform:translate(-50%,-50%)
+}
+.icon.drop{
+border-radius:50% 50% 60% 60%;
+transform:rotate(45deg)
+}
+.icon.heat{
+border-radius:50%;
+}
+.icon.heat:after{
+content:"";position:absolute;width:2px;height:14px;background:var(--accent);
+left:50%;top:6px;transform:translateX(-50%)
+}
+.icon.bath{
+border-radius:50%;
+}
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
@@ -88,11 +117,13 @@ footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
 
 <body>
 
+<input type="checkbox" id="mode">
+
 <nav>
   <div class="container nav">
     <div class="logo">Buckley Brothers</div>
     <div class="actions">
-      <div class="toggle" onclick="toggleMode()">☀️</div>
+      <label for="mode" class="switch">Light</label>
       <a href="tel:16175551234" class="cta">Call</a>
     </div>
   </div>
@@ -110,10 +141,10 @@ footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
   <div class="container">
     <h2>Services</h2>
     <div class="grid">
-      <div class="card"><div class="icon">🔧</div><h3>Repairs</h3><p>Leaks handled fast.</p></div>
-      <div class="card"><div class="icon">🚿</div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
-      <div class="card"><div class="icon">🔥</div><h3>Heaters</h3><p>Repair or replace.</p></div>
-      <div class="card"><div class="icon">🚽</div><h3>Bathrooms</h3><p>Install done right.</p></div>
+      <div class="card"><div class="icon pipe"></div><h3>Repairs</h3><p>Leaks handled fast.</p></div>
+      <div class="card"><div class="icon drop"></div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
+      <div class="card"><div class="icon heat"></div><h3>Heaters</h3><p>Repair or replace.</p></div>
+      <div class="card"><div class="icon bath"></div><h3>Bathrooms</h3><p>Install done right.</p></div>
     </div>
   </div>
 </section>
@@ -140,12 +171,6 @@ footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
 <footer>
   © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
-
-<script>
-function toggleMode(){
-  document.body.classList.toggle('light')
-}
-</script>
 
 </body>
 </html>
