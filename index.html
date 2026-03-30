@@ -7,46 +7,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;color:#111;line-height:1.6}
-a{text-decoration:none;color:inherit}
-img{width:100%;display:block}
+body{font-family:Inter,sans-serif;color:#111}
 .container{max-width:1100px;margin:auto;padding:0 20px}
+img{width:100%;display:block}
+a{text-decoration:none;color:inherit}
 
 /* NAV */
-nav{position:fixed;width:100%;top:0;background:#fff;border-bottom:1px solid #eee;z-index:1000}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-weight:700;font-size:20px}
+nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:1px solid #eee;z-index:10}
+.nav{display:flex;justify-content:space-between;align-items:center;height:70px}
+.logo{font-weight:700}
 .cta{background:#0a84ff;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600}
 
 /* HERO */
-.hero{height:100vh;background:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070') center/cover no-repeat;display:flex;align-items:center}
-.hero-overlay{background:rgba(0,0,0,0.55);width:100%;height:100%;display:flex;align-items:center}
-.hero h1{color:#fff;font-size:48px;margin-bottom:20px}
-.hero p{color:#ddd;font-size:18px;margin-bottom:30px;max-width:500px}
+.hero{height:100vh;background:url('https://images.pexels.com/photos/5691621/pexels-photo-5691621.jpeg') center/cover no-repeat}
+.overlay{background:rgba(0,0,0,.6);height:100%;display:flex;align-items:center}
+.hero h1{color:#fff;font-size:46px;margin-bottom:15px}
+.hero p{color:#ddd;max-width:520px;margin-bottom:25px}
 
 /* SECTIONS */
 section{padding:90px 0}
 h2{font-size:32px;margin-bottom:20px}
 .grid{display:grid;gap:20px}
 .services{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.card{border:1px solid #eee;border-radius:10px;padding:20px;background:#fff}
-.card img{border-radius:8px;margin-bottom:15px}
-.card h3{margin-bottom:10px}
+.card{border:1px solid #eee;border-radius:10px;padding:20px}
+.card img{border-radius:8px;margin-bottom:12px}
 
 /* ABOUT */
 .about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
 .about img{border-radius:12px}
 
 /* CONTACT */
-.contact{background:#f9f9f9;border-top:1px solid #eee}
-.contact-box{max-width:500px}
+.contact{background:#f7f7f7}
 .phone{font-size:28px;font-weight:700;margin:15px 0}
 
 /* FOOTER */
-footer{padding:40px 0;text-align:center;font-size:14px;color:#666}
+footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
 
 @media(max-width:768px){
-.hero h1{font-size:34px}
+.hero h1{font-size:32px}
 .about{grid-template-columns:1fr}
 }
 </style>
@@ -55,17 +53,17 @@ footer{padding:40px 0;text-align:center;font-size:14px;color:#666}
 <body>
 
 <nav>
-  <div class="container nav-inner">
+  <div class="container nav">
     <div class="logo">Buckley Brothers Plumbing</div>
     <a href="tel:16175551234" class="cta">Call Now</a>
   </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-overlay">
+  <div class="overlay">
     <div class="container">
-      <h1>Malden’s Trusted Plumbing Experts</h1>
-      <p>Fast, reliable plumbing services for homes and businesses. Licensed. Local. Always on call.</p>
+      <h1>Real Plumbers. Real Fast.</h1>
+      <p>Leaks, clogs, installs. Done right the first time. Serving Malden and nearby.</p>
       <a href="tel:16175551234" class="cta">Call (617) 555-1234</a>
     </div>
   </div>
@@ -73,31 +71,31 @@ footer{padding:40px 0;text-align:center;font-size:14px;color:#666}
 
 <section>
   <div class="container">
-    <h2>Our Services</h2>
+    <h2>Services</h2>
     <div class="grid services">
-      
+
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070">
+        <img src="https://images.pexels.com/photos/5691633/pexels-photo-5691633.jpeg">
         <h3>Emergency Repairs</h3>
-        <p>24/7 response for burst pipes, leaks, and urgent issues.</p>
+        <p>Burst pipes. Active leaks. We show up fast.</p>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2070">
-        <h3>Drain Cleaning</h3>
-        <p>Clogged sink or sewer line? We clear it fast.</p>
+        <img src="https://images.pexels.com/photos/8005397/pexels-photo-8005397.jpeg">
+        <h3>Drain Clearing</h3>
+        <p>Kitchen, bath, main line—cleared clean.</p>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1607478900766-efe13248b125?q=80&w=2070">
+        <img src="https://images.pexels.com/photos/5691613/pexels-photo-5691613.jpeg">
         <h3>Water Heaters</h3>
-        <p>Install, repair, and replace all major systems.</p>
+        <p>Repair or replace. Tank or tankless.</p>
       </div>
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=2070">
-        <h3>Bathroom Plumbing</h3>
-        <p>Toilets, faucets, showers—done right the first time.</p>
+        <img src="https://images.pexels.com/photos/8005401/pexels-photo-8005401.jpeg">
+        <h3>Bathroom Work</h3>
+        <p>Toilets, showers, installs done clean.</p>
       </div>
 
     </div>
@@ -107,22 +105,20 @@ footer{padding:40px 0;text-align:center;font-size:14px;color:#666}
 <section>
   <div class="container about">
     <div>
-      <h2>Why Choose Us</h2>
-      <p>Family-owned and proudly serving Malden and surrounding areas. We show up on time, fix it right, and stand behind our work.</p>
-      <p class="phone">(617) 555-1234</p>
+      <h2>Built on Trust</h2>
+      <p>Local crew. Straight pricing. No surprises. We fix it once and move on.</p>
+      <div class="phone">(617) 555-1234</div>
     </div>
-    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=2070">
+    <img src="https://images.pexels.com/photos/8486972/pexels-photo-8486972.jpeg">
   </div>
 </section>
 
 <section class="contact">
   <div class="container">
-    <h2>Get Help Now</h2>
-    <div class="contact-box">
-      <p>Need a plumber today? Call now for fast service.</p>
-      <div class="phone">(617) 555-1234</div>
-      <a href="tel:16175551234" class="cta">Call Now</a>
-    </div>
+    <h2>Need a Plumber Today?</h2>
+    <p>Call now. Get it handled.</p>
+    <div class="phone">(617) 555-1234</div>
+    <a href="tel:16175551234" class="cta">Call Now</a>
   </div>
 </section>
 
