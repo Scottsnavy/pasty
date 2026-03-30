@@ -1,129 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buckley Brothers Plumbing</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
---bg:#0b0f14;--text:#eaf0f6;--muted:#9fb0c3;
---card:#ffffff08;--border:#ffffff0d;--accent:#0a84ff;--nav:#0b0f14cc
-}
-.light{
---bg:#ffffff;--text:#111;--muted:#5b6b7c;
---card:#00000005;--border:#00000010;--accent:#0a84ff;--nav:#ffffffcc
-}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text)}
+body{font-family:Inter,sans-serif;background:#0b0f14;color:#eaf0f6}
 .container{max-width:1100px;margin:auto;padding:0 20px}
 
 /* NAV */
-nav{position:sticky;top:0;background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:10}
-.nav{display:flex;justify-content:space-between;align-items:center;height:70px}
+.nav{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;height:70px}
 .logo{font-weight:700}
-.actions{display:flex;gap:10px;align-items:center}
-.cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:6px;font-weight:600}
-
-/* CSS toggle (no JS) */
-#mode{display:none}
-.switch{
-cursor:pointer;border:1px solid var(--border);
-padding:8px 12px;border-radius:6px;font-size:12px
-}
-#mode:checked ~ *{--bg:#ffffff;--text:#111;--muted:#5b6b7c;
---card:#00000005;--border:#00000010;--nav:#ffffffcc}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{color:#cfd8e3;font-size:14px;text-decoration:none;position:relative}
+.nav-links a:hover{color:#fff}
+.nav-links a:after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#0a84ff;transition:.25s}
+.nav-links a:hover:after{width:100%}
+.cta{background:#0a84ff;color:#fff;padding:8px 14px;border-radius:6px;font-weight:600}
 
 /* HERO */
 .hero{
-height:100vh;display:flex;align-items:center;position:relative;
+height:100vh;display:flex;align-items:center;
 background:radial-gradient(circle at 20% 30%,#0a84ff33,transparent 40%),
-linear-gradient(135deg,var(--bg),#111927);
+linear-gradient(135deg,#0b0f14,#111927)
 }
-.hero:before{
-content:"";position:absolute;width:600px;height:600px;border-radius:50%;
-background:var(--accent);opacity:.15;filter:blur(120px);
-top:-100px;left:-100px;animation:float 12s ease-in-out infinite alternate;
-}
-.hero h1{font-size:52px;margin-bottom:15px;animation:fadeUp .8s ease}
-.hero p{color:var(--muted);max-width:500px;margin-bottom:25px}
-
-/* SECTIONS */
-section{padding:90px 0}
-h2{font-size:30px;margin-bottom:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-
-/* CARD */
-.card{
-padding:25px;border-radius:14px;background:var(--card);
-border:1px solid var(--border);transition:.3s;position:relative;overflow:hidden
-}
-.card:before{
-content:"";position:absolute;inset:0;
-background:linear-gradient(120deg,transparent,var(--accent),transparent);
-opacity:0;transition:.4s
-}
-.card:hover:before{opacity:.2}
-.card:hover{transform:translateY(-6px);border-color:var(--accent)}
-
-/* CLEAN ICONS */
-.icon{
-width:26px;height:26px;margin-bottom:12px;position:relative;
-border:2px solid var(--accent);border-radius:6px
-}
-.icon.pipe:after{
-content:"";position:absolute;width:14px;height:2px;background:var(--accent);
-top:50%;left:50%;transform:translate(-50%,-50%)
-}
-.icon.drop{
-border-radius:50% 50% 60% 60%;
-transform:rotate(45deg)
-}
-.icon.heat{
-border-radius:50%;
-}
-.icon.heat:after{
-content:"";position:absolute;width:2px;height:14px;background:var(--accent);
-left:50%;top:6px;transform:translateX(-50%)
-}
-.icon.bath{
-border-radius:50%;
-}
-
-/* ABOUT */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.highlight{
-background:linear-gradient(135deg,var(--accent),transparent);
-opacity:.1;padding:30px;border-radius:16px
-}
-
-/* CONTACT */
-.contact{text-align:center;background:var(--card)}
-.phone{font-size:28px;font-weight:700;margin:15px 0}
-
-/* FOOTER */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
-
-/* ANIM */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
-@keyframes float{from{transform:translateY(0)}to{transform:translateY(40px)}}
-
-@media(max-width:768px){
-.hero h1{font-size:34px}
-.about{grid-template-columns:1fr}
-}
+.hero h1{font-size:52px;margin-bottom:15px}
+.hero p{color:#9fb0c3;max-width:500px;margin-bottom:25px}
 </style>
-</head>
 
-<body>
-
-<input type="checkbox" id="mode">
-
-<nav>
-  <div class="container nav">
+<nav class="nav">
+  <div class="container nav-inner">
     <div class="logo">Buckley Brothers</div>
-    <div class="actions">
-      <label for="mode" class="switch">Light</label>
+    <div class="nav-links">
+      <a href="#">Services</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
       <a href="tel:16175551234" class="cta">Call</a>
     </div>
   </div>
@@ -137,17 +44,63 @@ footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
   </div>
 </header>
 
+<style>
+section{padding:90px 0}
+h2{font-size:30px;margin-bottom:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+
+.card{
+padding:25px;border-radius:14px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+transition:.3s;position:relative;overflow:hidden
+}
+.card:before{
+content:"";position:absolute;inset:0;
+background:linear-gradient(120deg,transparent,#0a84ff33,transparent);
+opacity:0;transition:.4s
+}
+.card:hover:before{opacity:.2}
+.card:hover{transform:translateY(-6px);border-color:#0a84ff}
+
+/* ICONS */
+.icon{
+width:26px;height:26px;margin-bottom:12px;
+border:2px solid #0a84ff;border-radius:6px;position:relative
+}
+.icon:after{
+content:"";position:absolute;width:12px;height:2px;
+background:#0a84ff;top:50%;left:50%;transform:translate(-50%,-50%)
+}
+</style>
+
 <section>
   <div class="container">
     <h2>Services</h2>
     <div class="grid">
-      <div class="card"><div class="icon pipe"></div><h3>Repairs</h3><p>Leaks handled fast.</p></div>
-      <div class="card"><div class="icon drop"></div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
-      <div class="card"><div class="icon heat"></div><h3>Heaters</h3><p>Repair or replace.</p></div>
-      <div class="card"><div class="icon bath"></div><h3>Bathrooms</h3><p>Install done right.</p></div>
+      <div class="card"><div class="icon"></div><h3>Repairs</h3><p>Leaks handled fast.</p></div>
+      <div class="card"><div class="icon"></div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
+      <div class="card"><div class="icon"></div><h3>Heaters</h3><p>Repair or replace.</p></div>
+      <div class="card"><div class="icon"></div><h3>Bathrooms</h3><p>Install done right.</p></div>
     </div>
   </div>
 </section>
+
+<style>
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.highlight{
+background:linear-gradient(135deg,#0a84ff22,#6dd5fa11);
+padding:30px;border-radius:16px
+}
+.contact{text-align:center;background:#0f141b}
+.phone{font-size:28px;font-weight:700;margin:15px 0}
+footer{text-align:center;padding:40px 0;color:#6b7c8f;font-size:14px}
+
+@media(max-width:768px){
+.hero h1{font-size:34px}
+.about{grid-template-columns:1fr}
+}
+</style>
 
 <section>
   <div class="container about">
@@ -156,7 +109,9 @@ footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
       <p>Local. Reliable. No surprises. Just work done right.</p>
       <div class="phone">(617) 555-1234</div>
     </div>
-    <div class="highlight"></div>
+    <div class="highlight">
+      <p>Serving Malden. Fast response. Clean work.</p>
+    </div>
   </div>
 </section>
 
@@ -171,6 +126,3 @@ footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
 <footer>
   © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
-
-</body>
-</html>
