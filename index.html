@@ -6,65 +6,82 @@
 <title>Buckley Brothers Plumbing</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+:root{
+--bg:#0b0f14;--text:#eaf0f6;--muted:#9fb0c3;--card:#ffffff08;
+--border:#ffffff0d;--accent:#0a84ff;--nav:#0b0f14cc
+}
+.light{
+--bg:#ffffff;--text:#111;--muted:#5b6b7c;--card:#00000005;
+--border:#00000010;--accent:#0a84ff;--nav:#ffffffcc
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;color:#111}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);transition:.3s}
 .container{max-width:1100px;margin:auto;padding:0 20px}
 
 /* NAV */
-nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:1px solid #eee;z-index:10}
+nav{position:sticky;top:0;background:var(--nav);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:10;transition:.3s}
 .nav{display:flex;justify-content:space-between;align-items:center;height:70px}
 .logo{font-weight:700}
-.cta{background:#0a84ff;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600}
+.actions{display:flex;gap:10px;align-items:center}
+.cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:6px;font-weight:600}
+.toggle{
+cursor:pointer;border:1px solid var(--border);padding:8px 10px;border-radius:6px;
+}
 
 /* HERO */
-.hero{position:relative;height:100vh;overflow:hidden}
-.hero-img{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  animation:zoom 10s ease-in-out infinite alternate;
+.hero{
+height:100vh;display:flex;align-items:center;position:relative;
+background:radial-gradient(circle at 20% 30%,#0a84ff33,transparent 40%),
+linear-gradient(135deg,var(--bg),#111927);
 }
-.img1{background-image:url('/assets/img/buckley-hero-1.webp')}
-.img2{
-  background-image:url('/assets/img/buckley-hero-2.webp');
-  opacity:0;
-  animation:fade 10s infinite, zoom 10s ease-in-out infinite alternate;
+.hero:before{
+content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+background:var(--accent);opacity:.15;filter:blur(120px);
+top:-100px;left:-100px;animation:float 12s ease-in-out infinite alternate;
 }
+.hero h1{font-size:52px;margin-bottom:15px;animation:fadeUp .8s ease}
+.hero p{color:var(--muted);max-width:500px;margin-bottom:25px;animation:fadeUp 1s ease}
 
-@keyframes zoom{
-  from{transform:scale(1)}
-  to{transform:scale(1.05)}
-}
-@keyframes fade{
-  0%,45%{opacity:0}
-  50%,95%{opacity:1}
-  100%{opacity:0}
-}
-
-.overlay{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,.55);
-  display:flex;align-items:center;
-}
-.hero h1{color:#fff;font-size:48px;margin-bottom:15px}
-.hero p{color:#ddd;max-width:500px;margin-bottom:25px}
-
-/* SECTION */
-section{padding:80px 0}
+/* SECTIONS */
+section{padding:90px 0}
 h2{font-size:30px;margin-bottom:20px}
-.grid{display:grid;gap:20px}
-.services{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.card{border:1px solid #eee;border-radius:10px;padding:20px}
-.icon{font-size:28px;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+
+/* CARD */
+.card{
+padding:25px;border-radius:14px;background:var(--card);
+border:1px solid var(--border);transition:.3s;position:relative;overflow:hidden
+}
+.card:before{
+content:"";position:absolute;inset:0;
+background:linear-gradient(120deg,transparent,var(--accent),transparent);
+opacity:0;transition:.4s
+}
+.card:hover:before{opacity:.2}
+.card:hover{transform:translateY(-6px);border-color:var(--accent)}
+.icon{margin-bottom:10px}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.highlight{
+background:linear-gradient(135deg,var(--accent),transparent);
+opacity:.1;padding:30px;border-radius:16px
+}
 
 /* CONTACT */
-.contact{background:#f7f7f7}
-.phone{font-size:26px;font-weight:700;margin:15px 0}
+.contact{text-align:center;background:var(--card)}
+.phone{font-size:28px;font-weight:700;margin:15px 0}
 
 /* FOOTER */
-footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:14px}
+
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(40px)}}
 
 @media(max-width:768px){
-.hero h1{font-size:32px}
+.hero h1{font-size:34px}
+.about{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -73,39 +90,48 @@ footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
 
 <nav>
   <div class="container nav">
-    <div class="logo">Buckley Brothers Plumbing</div>
-    <a href="tel:16175551234" class="cta">Call Now</a>
+    <div class="logo">Buckley Brothers</div>
+    <div class="actions">
+      <div class="toggle" onclick="toggleMode()">☀️</div>
+      <a href="tel:16175551234" class="cta">Call</a>
+    </div>
   </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-img img1"></div>
-  <div class="hero-img img2"></div>
+<header class="hero">
+  <div class="container">
+    <h1>Plumbing. Without the Headache.</h1>
+    <p>Fast, clean, reliable service across Malden.</p>
+    <a href="tel:16175551234" class="cta">Call (617) 555-1234</a>
+  </div>
+</header>
 
-  <div class="overlay">
-    <div class="container">
-      <h1>Fast. Clean. Done Right.</h1>
-      <p>Malden plumbers. No delays. No mess. Just fixed.</p>
-      <a href="tel:16175551234" class="cta">Call (617) 555-1234</a>
+<section>
+  <div class="container">
+    <h2>Services</h2>
+    <div class="grid">
+      <div class="card"><div class="icon">🔧</div><h3>Repairs</h3><p>Leaks handled fast.</p></div>
+      <div class="card"><div class="icon">🚿</div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
+      <div class="card"><div class="icon">🔥</div><h3>Heaters</h3><p>Repair or replace.</p></div>
+      <div class="card"><div class="icon">🚽</div><h3>Bathrooms</h3><p>Install done right.</p></div>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="container">
-    <h2>Services</h2>
-    <div class="grid services">
-      <div class="card"><div class="icon">🔧</div><h3>Repairs</h3><p>Leaks, bursts, fixes done fast.</p></div>
-      <div class="card"><div class="icon">🚿</div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
-      <div class="card"><div class="icon">🔥</div><h3>Heaters</h3><p>Repair or replace systems.</p></div>
-      <div class="card"><div class="icon">🚽</div><h3>Bathrooms</h3><p>Installations done right.</p></div>
+  <div class="container about">
+    <div>
+      <h2>Why Buckley</h2>
+      <p>Local. Reliable. No surprises. Just work done right.</p>
+      <div class="phone">(617) 555-1234</div>
     </div>
+    <div class="highlight"></div>
   </div>
 </section>
 
 <section class="contact">
   <div class="container">
-    <h2>Call Now</h2>
+    <h2>Need Help Today?</h2>
     <div class="phone">(617) 555-1234</div>
     <a href="tel:16175551234" class="cta">Call Now</a>
   </div>
@@ -114,6 +140,12 @@ footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
 <footer>
   © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle('light')
+}
+</script>
 
 </body>
 </html>
