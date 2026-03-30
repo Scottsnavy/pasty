@@ -3,14 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buckley Brothers Plumbing | Malden, MA</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Buckley Brothers Plumbing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;color:#111}
 .container{max-width:1100px;margin:auto;padding:0 20px}
-img{width:100%;display:block}
-a{text-decoration:none;color:inherit}
 
 /* NAV */
 nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:1px solid #eee;z-index:10}
@@ -19,33 +17,54 @@ nav{position:fixed;top:0;width:100%;background:#fff;border-bottom:1px solid #eee
 .cta{background:#0a84ff;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600}
 
 /* HERO */
-.hero{height:100vh;background:url('https://images.pexels.com/photos/5691621/pexels-photo-5691621.jpeg') center/cover no-repeat}
-.overlay{background:rgba(0,0,0,.6);height:100%;display:flex;align-items:center}
-.hero h1{color:#fff;font-size:46px;margin-bottom:15px}
-.hero p{color:#ddd;max-width:520px;margin-bottom:25px}
+.hero{position:relative;height:100vh;overflow:hidden}
+.hero-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  animation:zoom 10s ease-in-out infinite alternate;
+}
+.img1{background-image:url('/assets/img/buckley-hero-1.webp')}
+.img2{
+  background-image:url('/assets/img/buckley-hero-2.webp');
+  opacity:0;
+  animation:fade 10s infinite, zoom 10s ease-in-out infinite alternate;
+}
 
-/* SECTIONS */
-section{padding:90px 0}
-h2{font-size:32px;margin-bottom:20px}
+@keyframes zoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.05)}
+}
+@keyframes fade{
+  0%,45%{opacity:0}
+  50%,95%{opacity:1}
+  100%{opacity:0}
+}
+
+.overlay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,.55);
+  display:flex;align-items:center;
+}
+.hero h1{color:#fff;font-size:48px;margin-bottom:15px}
+.hero p{color:#ddd;max-width:500px;margin-bottom:25px}
+
+/* SECTION */
+section{padding:80px 0}
+h2{font-size:30px;margin-bottom:20px}
 .grid{display:grid;gap:20px}
 .services{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
 .card{border:1px solid #eee;border-radius:10px;padding:20px}
-.card img{border-radius:8px;margin-bottom:12px}
-
-/* ABOUT */
-.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.about img{border-radius:12px}
+.icon{font-size:28px;margin-bottom:10px}
 
 /* CONTACT */
 .contact{background:#f7f7f7}
-.phone{font-size:28px;font-weight:700;margin:15px 0}
+.phone{font-size:26px;font-weight:700;margin:15px 0}
 
 /* FOOTER */
 footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
 
 @media(max-width:768px){
 .hero h1{font-size:32px}
-.about{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -60,10 +79,13 @@ footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
 </nav>
 
 <section class="hero">
+  <div class="hero-img img1"></div>
+  <div class="hero-img img2"></div>
+
   <div class="overlay">
     <div class="container">
-      <h1>Real Plumbers. Real Fast.</h1>
-      <p>Leaks, clogs, installs. Done right the first time. Serving Malden and nearby.</p>
+      <h1>Fast. Clean. Done Right.</h1>
+      <p>Malden plumbers. No delays. No mess. Just fixed.</p>
       <a href="tel:16175551234" class="cta">Call (617) 555-1234</a>
     </div>
   </div>
@@ -73,59 +95,24 @@ footer{text-align:center;padding:40px 0;color:#666;font-size:14px}
   <div class="container">
     <h2>Services</h2>
     <div class="grid services">
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/5691633/pexels-photo-5691633.jpeg">
-        <h3>Emergency Repairs</h3>
-        <p>Burst pipes. Active leaks. We show up fast.</p>
-      </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/8005397/pexels-photo-8005397.jpeg">
-        <h3>Drain Clearing</h3>
-        <p>Kitchen, bath, main line—cleared clean.</p>
-      </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/5691613/pexels-photo-5691613.jpeg">
-        <h3>Water Heaters</h3>
-        <p>Repair or replace. Tank or tankless.</p>
-      </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/8005401/pexels-photo-8005401.jpeg">
-        <h3>Bathroom Work</h3>
-        <p>Toilets, showers, installs done clean.</p>
-      </div>
-
+      <div class="card"><div class="icon">🔧</div><h3>Repairs</h3><p>Leaks, bursts, fixes done fast.</p></div>
+      <div class="card"><div class="icon">🚿</div><h3>Drains</h3><p>Clogs cleared clean.</p></div>
+      <div class="card"><div class="icon">🔥</div><h3>Heaters</h3><p>Repair or replace systems.</p></div>
+      <div class="card"><div class="icon">🚽</div><h3>Bathrooms</h3><p>Installations done right.</p></div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="container about">
-    <div>
-      <h2>Built on Trust</h2>
-      <p>Local crew. Straight pricing. No surprises. We fix it once and move on.</p>
-      <div class="phone">(617) 555-1234</div>
-    </div>
-    <img src="https://images.pexels.com/photos/8486972/pexels-photo-8486972.jpeg">
   </div>
 </section>
 
 <section class="contact">
   <div class="container">
-    <h2>Need a Plumber Today?</h2>
-    <p>Call now. Get it handled.</p>
+    <h2>Call Now</h2>
     <div class="phone">(617) 555-1234</div>
     <a href="tel:16175551234" class="cta">Call Now</a>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    © 2026 Buckley Brothers Plumbing • Malden, MA
-  </div>
+  © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
 
 </body>
