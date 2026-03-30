@@ -8,16 +8,24 @@
 
 <style>
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#111;line-height:1.5}
+h1,h2{margin:0 0 10px}
 .container{max-width:1100px;margin:auto;padding:20px}
-.hero{background:#0a2540;color:#fff;padding:80px 20px;text-align:center}
-.hero h1{font-size:40px;margin-bottom:10px}
+.hero{
+background:url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600') center/cover no-repeat;
+color:#fff;position:relative}
+.hero::after{content:"";position:absolute;inset:0;background:rgba(10,37,64,.75)}
+.hero-content{position:relative;padding:100px 20px;text-align:center}
+.hero h1{font-size:42px}
 .btn{display:inline-block;padding:14px 22px;margin:10px;border-radius:6px;text-decoration:none;font-weight:600}
 .btn-primary{background:#2ecc71;color:#000}
 .btn-secondary{background:#fff;color:#000}
-.section{padding:60px 20px}
+.section{padding:70px 20px}
 .grid{display:grid;gap:20px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-.card{padding:20px;border:1px solid #eee;border-radius:8px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{padding:22px;border:1px solid #eee;border-radius:10px;background:#fff}
+.trust{background:#f8f9fb;text-align:center}
+.badges{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;margin-top:15px}
+.badge{padding:10px 16px;border:1px solid #ddd;border-radius:999px;background:#fff;font-size:14px}
 .sticky-call{position:fixed;bottom:0;width:100%;background:#2ecc71;text-align:center;padding:14px;font-weight:700}
 a{color:inherit}
 footer{background:#111;color:#fff;text-align:center;padding:30px}
@@ -27,31 +35,43 @@ footer{background:#111;color:#fff;text-align:center;padding:30px}
 <body>
 
 <section class="hero">
-<div class="container">
+<div class="hero-content container">
 <h1>24/7 Emergency Plumbing in Malden</h1>
-<p>Fast, reliable service. Licensed. Local.</p>
+<p>Fast response. Fair pricing. Trusted local plumbers.</p>
 <a href="tel:17813227509" class="btn btn-primary">Call Now</a>
 <a href="#contact" class="btn btn-secondary">Request Service</a>
 </div>
 </section>
 
-<section class="section">
+<section class="section trust">
 <div class="container">
-<h2>Our Services</h2>
-<div class="grid grid-3">
-<div class="card">Emergency Repairs</div>
-<div class="card">Drain Cleaning</div>
-<div class="card">Water Heaters</div>
-<div class="card">Leak Detection</div>
-<div class="card">Sewer Lines</div>
+<h2>Trusted Local Experts</h2>
+<p>Serving Malden & North Shore for 20+ years</p>
+<div class="badges">
+<div class="badge">Licensed & Insured</div>
+<div class="badge">24/7 Emergency</div>
+<div class="badge">Fast Response</div>
+<div class="badge">5-Star Reviews</div>
 </div>
 </div>
 </section>
 
 <section class="section">
 <div class="container">
-<h2>Trusted Local Plumbers</h2>
-<p>Serving Malden and surrounding areas for over 20 years. Licensed and insured.</p>
+<h2>Plumbing Services</h2>
+<div class="grid grid-3">
+<div class="card"><strong>Emergency Repairs</strong><br>Immediate help when you need it most.</div>
+<div class="card"><strong>Drain Cleaning</strong><br>Clear tough clogs fast.</div>
+<div class="card"><strong>Water Heaters</strong><br>Repair & install.</div>
+<div class="card"><strong>Leak Detection</strong><br>Find and fix hidden leaks.</div>
+<div class="card"><strong>Sewer Lines</strong><br>Reliable long-term solutions.</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2>What Customers Say</h2>
 <div class="grid grid-3">
 <div class="card">“Fast, fair, and reliable.”</div>
 <div class="card">“Great service and pricing.”</div>
@@ -60,7 +80,7 @@ footer{background:#111;color:#fff;text-align:center;padding:30px}
 </div>
 </section>
 
-<section class="section">
+<section class="section trust">
 <div class="container">
 <h2>Service Area</h2>
 <p>Malden, Medford, Everett, Melrose, Revere</p>
@@ -68,9 +88,9 @@ footer{background:#111;color:#fff;text-align:center;padding:30px}
 </section>
 
 <section id="contact" class="section">
-<div class="container">
-<h2>Request Service</h2>
-<p>Call now or reach out for fast help.</p>
+<div class="container" style="text-align:center">
+<h2>Need a Plumber Now?</h2>
+<p>Call for immediate service or request a callback.</p>
 <a href="tel:17813227509" class="btn btn-primary">Call (781) 322-7509</a>
 </div>
 </section>
