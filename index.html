@@ -6,34 +6,38 @@ body{font-family:Inter,sans-serif;background:#0b0f14;color:#eaf0f6}
 /* NAV */
 .nav{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-inner{display:flex;justify-content:space-between;align-items:center;height:70px}
-.logo{font-weight:700}
-.nav-links{display:flex;gap:20px;align-items:center}
-.nav-links a{color:#cfd8e3;font-size:14px;text-decoration:none;position:relative}
-.nav-links a:hover{color:#fff}
-.nav-links a:after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:#0a84ff;transition:.25s}
-.nav-links a:hover:after{width:100%}
-.cta{background:#0a84ff;color:#fff;padding:8px 14px;border-radius:6px;font-weight:600}
+.logo{
+background:linear-gradient(90deg,#0a84ff,#6dd5fa);
+-webkit-background-clip:text;color:transparent;font-weight:700
+}
+
+/* HAMBURGER */
+.menu-toggle{display:none}
+.hamburger{width:28px;height:20px;position:relative;cursor:pointer}
+.hamburger span{position:absolute;height:2px;width:100%;background:#fff;left:0;transition:.3s}
+.hamburger span:nth-child(1){top:0}
+.hamburger span:nth-child(2){top:9px}
+.hamburger span:nth-child(3){bottom:0}
 
 /* HERO */
 .hero{
-height:100vh;display:flex;align-items:center;
+height:100vh;display:flex;align-items:center;position:relative;
 background:radial-gradient(circle at 20% 30%,#0a84ff33,transparent 40%),
 linear-gradient(135deg,#0b0f14,#111927)
 }
 .hero h1{font-size:52px;margin-bottom:15px}
 .hero p{color:#9fb0c3;max-width:500px;margin-bottom:25px}
+.cta{background:#0a84ff;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600}
 </style>
+
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
 
 <nav class="nav">
   <div class="container nav-inner">
     <div class="logo">Buckley Brothers</div>
-    <div class="nav-links">
-      <div class="nav-right">
-  <label for="menu-toggle" class="hamburger">
-    <span></span><span></span><span></span>
-  </label>
-</div>
-    </div>
+    <label for="menu-toggle" class="hamburger">
+      <span></span><span></span><span></span>
+    </label>
   </div>
 </nav>
 
@@ -44,6 +48,66 @@ linear-gradient(135deg,#0b0f14,#111927)
     <a href="tel:16175551234" class="cta">Call (617) 555-1234</a>
   </div>
 </header>
+
+<style>
+.menu{
+position:fixed;inset:0;
+background:
+radial-gradient(circle at 20% 20%,#0a84ff55,transparent 40%),
+linear-gradient(135deg,#05070d,#0a0f1f);
+display:flex;align-items:center;justify-content:center;
+flex-direction:column;gap:30px;
+opacity:0;pointer-events:none;
+transition:.4s;
+z-index:20;
+}
+
+/* links */
+.menu a{
+font-size:34px;font-weight:600;
+color:#fff;text-decoration:none;
+position:relative;letter-spacing:.5px
+}
+.menu a:after{
+content:"";position:absolute;left:0;bottom:-6px;
+width:0;height:2px;background:#0a84ff;transition:.3s
+}
+.menu a:hover:after{width:100%}
+
+/* open */
+.menu-toggle:checked ~ .menu{
+opacity:1;pointer-events:auto;
+}
+
+/* hamburger → X */
+.menu-toggle:checked + nav label span:nth-child(1){
+transform:rotate(45deg);top:9px
+}
+.menu-toggle:checked + nav label span:nth-child(2){
+opacity:0
+}
+.menu-toggle:checked + nav label span:nth-child(3){
+transform:rotate(-45deg);bottom:9px
+}
+
+/* hero light sweep */
+.hero:after{
+content:"";position:absolute;inset:0;
+background:linear-gradient(120deg,transparent,#0a84ff22,transparent);
+animation:shine 6s linear infinite;
+}
+@keyframes shine{
+0%{transform:translateX(-100%)}
+100%{transform:translateX(100%)}
+}
+</style>
+
+<div class="menu">
+  <a href="#">Services</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+  <a href="tel:16175551234">Call Now</a>
+</div>
 
 <style>
 section{padding:90px 0}
@@ -64,7 +128,6 @@ opacity:0;transition:.4s
 .card:hover:before{opacity:.2}
 .card:hover{transform:translateY(-6px);border-color:#0a84ff}
 
-/* ICONS */
 .icon{
 width:26px;height:26px;margin-bottom:12px;
 border:2px solid #0a84ff;border-radius:6px;position:relative
@@ -100,6 +163,7 @@ footer{text-align:center;padding:40px 0;color:#6b7c8f;font-size:14px}
 @media(max-width:768px){
 .hero h1{font-size:34px}
 .about{grid-template-columns:1fr}
+.menu a{font-size:26px}
 }
 </style>
 
@@ -127,109 +191,3 @@ footer{text-align:center;padding:40px 0;color:#6b7c8f;font-size:14px}
 <footer>
   © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
-
-<style>
-/* HAMBURGER */
-.menu-toggle{display:none}
-.hamburger{
-width:28px;height:20px;position:relative;cursor:pointer
-}
-.hamburger span{
-position:absolute;height:2px;width:100%;
-background:#fff;left:0;transition:.3s
-}
-.hamburger span:nth-child(1){top:0}
-.hamburger span:nth-child(2){top:9px}
-.hamburger span:nth-child(3){bottom:0}
-
-/* FULLSCREEN MENU */
-.menu{
-position:fixed;inset:0;
-background:linear-gradient(135deg,#0a0f1f,#0a84ff);
-display:flex;align-items:center;justify-content:center;
-flex-direction:column;gap:30px;
-opacity:0;pointer-events:none;
-transition:.4s;
-z-index:20;
-}
-
-/* MENU LINKS */
-.menu a{
-font-size:32px;font-weight:600;
-color:#fff;text-decoration:none;
-position:relative;
-}
-.menu a:after{
-content:"";position:absolute;left:0;bottom:-6px;
-width:0;height:2px;background:#fff;transition:.3s
-}
-.menu a:hover:after{width:100%}
-
-/* TOGGLE OPEN */
-.menu-toggle:checked ~ .menu{
-opacity:1;pointer-events:auto;
-}
-
-/* ANIMATE HAMBURGER → X */
-.menu-toggle:checked + label span:nth-child(1){
-transform:rotate(45deg);top:9px
-}
-.menu-toggle:checked + label span:nth-child(2){
-opacity:0
-}
-.menu-toggle:checked + label span:nth-child(3){
-transform:rotate(-45deg);bottom:9px
-}
-
-/* PLACE IN NAV */
-.nav-right{
-display:flex;align-items:center;gap:20px
-}
-
-/* GRADIENT TEXT LOGO UPGRADE */
-.logo{
-background:linear-gradient(90deg,#0a84ff,#6dd5fa);
--webkit-background-clip:text;
-color:transparent;
-font-weight:700;
-}
-
-/* HERO UPGRADE (high fashion feel) */
-.hero{
-position:relative;
-overflow:hidden;
-}
-.hero:after{
-content:"";position:absolute;inset:0;
-background:linear-gradient(120deg,transparent,#0a84ff22,transparent);
-animation:shine 6s linear infinite;
-}
-
-@keyframes shine{
-0%{transform:translateX(-100%)}
-100%{transform:translateX(100%)}
-}
-
-/* MOBILE TWEAK */
-@media(max-width:768px){
-.menu a{font-size:26px}
-}
-</style>
-
-<!-- TOGGLE -->
-<input type="checkbox" id="menu-toggle" class="menu-toggle">
-
-<!-- NAV RIGHT (replace your nav-links with this) -->
-<div class="nav-right">
-  <label for="menu-toggle" class="hamburger">
-    <span></span><span></span><span></span>
-  </label>
-</div>
-
-<!-- FULLSCREEN MENU -->
-<div class="menu">
-  <a href="#">Services</a>
-  <a href="#">About</a>
-  <a href="#">Contact</a>
-  <a href="tel:16175551234">Call Now</a>
-</div>
