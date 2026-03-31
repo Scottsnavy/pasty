@@ -10,15 +10,23 @@
 
 <body>
 
+<input type="checkbox" id="menu-toggle" class="menu-toggle">
+
 <nav class="nav">
   <div class="container nav-inner">
     <div class="logo">Buckley Brothers</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-    </div>
+    <label for="menu-toggle" class="hamburger">
+      <span></span><span></span><span></span>
+    </label>
   </div>
 </nav>
+
+<div class="menu">
+  <label for="menu-toggle" class="close"></label>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="contact.html">Contact</a>
+</div>
 
 <section class="contact">
   <div class="container">
