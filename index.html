@@ -1,35 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buckley Brothers Plumbing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-html{scroll-behavior:smooth}
+/* BASE (mobile first) */
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{font-family:Inter,sans-serif;background:#0b0f14;color:#eaf0f6}
 .container{max-width:1100px;margin:auto;padding:0 20px}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:10;background:rgba(11,15,20,.7);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
-.nav-inner{display:flex;justify-content:space-between;align-items:center;height:70px}
+.menu-toggle{display:none}
+.nav{
+position:sticky;top:0;z-index:10;
+background:rgba(11,15,20,.7);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,255,255,.06)
+}
+.nav-inner{
+display:flex;justify-content:space-between;align-items:center;
+height:60px
+}
 .logo{
+font-size:16px;font-weight:700;
 background:linear-gradient(90deg,#0a84ff,#6dd5fa);
--webkit-background-clip:text;color:transparent;font-weight:700
+-webkit-background-clip:text;color:transparent
 }
 
 /* HAMBURGER */
-.menu-toggle{display:none}
-.hamburger{width:28px;height:20px;position:relative;cursor:pointer}
-.hamburger span{position:absolute;height:2px;width:100%;background:#fff;left:0;transition:.3s}
+.hamburger{width:26px;height:18px;position:relative;cursor:pointer}
+.hamburger span{
+position:absolute;height:2px;width:100%;background:#fff;left:0;transition:.3s
+}
 .hamburger span:nth-child(1){top:0}
-.hamburger span:nth-child(2){top:9px}
+.hamburger span:nth-child(2){top:8px}
 .hamburger span:nth-child(3){bottom:0}
+
+/* MENU */
+.menu{
+position:fixed;inset:0;
+background:
+radial-gradient(circle at 20% 20%,#0a84ff55,transparent 40%),
+linear-gradient(135deg,#05070d,#0a0f1f);
+display:flex;align-items:center;justify-content:center;
+flex-direction:column;gap:26px;
+opacity:0;pointer-events:none;
+transition:.4s;z-index:20;
+}
+.menu a{
+font-size:26px;font-weight:600;color:#fff;text-decoration:none;
+position:relative
+}
+.menu a:after{
+content:"";position:absolute;left:0;bottom:-6px;
+width:0;height:2px;background:#0a84ff;transition:.3s
+}
+.menu a:hover:after{width:100%}
+
+/* CLOSE */
+.close{
+position:absolute;top:20px;right:20px;width:28px;height:28px;cursor:pointer
+}
+.close:before,.close:after{
+content:"";position:absolute;width:100%;height:2px;background:#fff;top:50%;left:0
+}
+.close:before{transform:rotate(45deg)}
+.close:after{transform:rotate(-45deg)}
+
+/* TOGGLE */
+.menu-toggle:checked ~ .menu{opacity:1;pointer-events:auto}
+.menu-toggle:checked + nav label span:nth-child(1){transform:rotate(45deg);top:8px}
+.menu-toggle:checked + nav label span:nth-child(2){opacity:0}
+.menu-toggle:checked + nav label span:nth-child(3){transform:rotate(-45deg);bottom:8px}
 
 /* HERO */
 .hero{
-height:100vh;display:flex;align-items:center;position:relative;
-background:radial-gradient(circle at 20% 30%,#0a84ff33,transparent 40%),
+min-height:85vh;
+display:flex;align-items:center;
+background:
+radial-gradient(circle at 20% 30%,#0a84ff33,transparent 40%),
 linear-gradient(135deg,#0b0f14,#111927)
 }
-.hero h1{font-size:52px;margin-bottom:15px}
-.hero p{color:#9fb0c3;max-width:500px;margin-bottom:25px}
-.cta{background:#0a84ff;color:#fff;padding:10px 18px;border-radius:6px;font-weight:600}
+.hero h1{
+font-size:32px;line-height:1.2;margin-bottom:12px
+}
+.hero p{
+font-size:16px;color:#9fb0c3;margin-bottom:20px
+}
+.cta{
+display:inline-block;
+background:#0a84ff;color:#fff;
+padding:12px 16px;border-radius:6px;font-weight:600
+}
+
+/* SECTIONS */
+section{padding:60px 0}
+h2{font-size:24px;margin-bottom:16px}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr;
+gap:16px
+}
+
+/* CARD */
+.card{
+padding:20px;border-radius:12px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+transition:.3s
+}
+.card:hover{transform:translateY(-4px);border-color:#0a84ff}
+
+/* ICON */
+.icon{
+width:24px;height:24px;margin-bottom:10px;
+border:2px solid #0a84ff;border-radius:6px;
+position:relative
+}
+.icon:after{
+content:"";position:absolute;width:10px;height:2px;
+background:#0a84ff;top:50%;left:50%;transform:translate(-50%,-50%)
+}
+
+/* ABOUT */
+.about{
+display:grid;
+grid-template-columns:1fr;
+gap:20px
+}
+.highlight{
+padding:20px;border-radius:12px;
+background:linear-gradient(135deg,#0a84ff22,#6dd5fa11)
+}
+
+/* CONTACT */
+.contact{text-align:center;background:#0f141b}
+.phone{font-size:24px;font-weight:700;margin:10px 0}
+
+/* FOOTER */
+footer{text-align:center;padding:30px 0;color:#6b7c8f;font-size:14px}
+
+/* DESKTOP SCALE UP */
+@media(min-width:768px){
+
+.hero h1{font-size:52px}
+.hero p{font-size:18px}
+
+.nav-inner{height:70px}
+.logo{font-size:18px}
+
+.grid{
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px
+}
+
+.about{
+grid-template-columns:1fr 1fr;
+gap:40px
+}
+
+section{padding:90px 0}
+h2{font-size:30px}
+
+.menu a{font-size:34px}
+
+}
 </style>
+</head>
+
+<body>
 
 <input type="checkbox" id="menu-toggle" class="menu-toggle">
 
@@ -42,78 +187,6 @@ linear-gradient(135deg,#0b0f14,#111927)
   </div>
 </nav>
 
-<header class="hero">
-  <div class="container">
-    <h1>Plumbing. Without the Headache.</h1>
-    <p>Fast, clean, reliable service across Malden.</p>
-    <a href="#contact" class="cta">Call Now</a>
-  </div>
-</header>
-
-<style>
-.menu{
-position:fixed;inset:0;
-background:
-radial-gradient(circle at 20% 20%,#0a84ff55,transparent 40%),
-linear-gradient(135deg,#05070d,#0a0f1f);
-display:flex;align-items:center;justify-content:center;
-flex-direction:column;gap:30px;
-opacity:0;pointer-events:none;
-transition:.4s;
-z-index:20;
-}
-
-/* links */
-.menu a{
-font-size:34px;font-weight:600;
-color:#fff;text-decoration:none;
-position:relative;letter-spacing:.5px
-}
-.menu a:after{
-content:"";position:absolute;left:0;bottom:-6px;
-width:0;height:2px;background:#0a84ff;transition:.3s
-}
-.menu a:hover:after{width:100%}
-
-/* CLOSE X */
-.close{
-position:absolute;top:30px;right:30px;
-width:30px;height:30px;cursor:pointer;
-}
-.close:before,.close:after{
-content:"";position:absolute;width:100%;height:2px;background:#fff;top:50%;left:0;
-}
-.close:before{transform:rotate(45deg)}
-.close:after{transform:rotate(-45deg)}
-
-/* open */
-.menu-toggle:checked ~ .menu{
-opacity:1;pointer-events:auto;
-}
-
-/* hamburger → X */
-.menu-toggle:checked + nav label span:nth-child(1){
-transform:rotate(45deg);top:9px
-}
-.menu-toggle:checked + nav label span:nth-child(2){
-opacity:0
-}
-.menu-toggle:checked + nav label span:nth-child(3){
-transform:rotate(-45deg);bottom:9px
-}
-
-/* hero shine */
-.hero:after{
-content:"";position:absolute;inset:0;
-background:linear-gradient(120deg,transparent,#0a84ff22,transparent);
-animation:shine 6s linear infinite;
-}
-@keyframes shine{
-0%{transform:translateX(-100%)}
-100%{transform:translateX(100%)}
-}
-</style>
-
 <div class="menu">
   <label for="menu-toggle" class="close"></label>
   <a href="#services">Services</a>
@@ -121,34 +194,13 @@ animation:shine 6s linear infinite;
   <a href="#contact">Contact</a>
 </div>
 
-<style>
-section{padding:90px 0}
-h2{font-size:30px;margin-bottom:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-
-.card{
-padding:25px;border-radius:14px;
-background:rgba(255,255,255,.03);
-border:1px solid rgba(255,255,255,.05);
-transition:.3s;position:relative;overflow:hidden
-}
-.card:before{
-content:"";position:absolute;inset:0;
-background:linear-gradient(120deg,transparent,#0a84ff33,transparent);
-opacity:0;transition:.4s
-}
-.card:hover:before{opacity:.2}
-.card:hover{transform:translateY(-6px);border-color:#0a84ff}
-
-.icon{
-width:26px;height:26px;margin-bottom:12px;
-border:2px solid #0a84ff;border-radius:6px;position:relative
-}
-.icon:after{
-content:"";position:absolute;width:12px;height:2px;
-background:#0a84ff;top:50%;left:50%;transform:translate(-50%,-50%)
-}
-</style>
+<header class="hero">
+  <div class="container">
+    <h1>Plumbing. Without the Headache.</h1>
+    <p>Fast, clean, reliable service across Malden.</p>
+    <a href="#contact" class="cta">Call Now</a>
+  </div>
+</header>
 
 <section id="services">
   <div class="container">
@@ -161,23 +213,6 @@ background:#0a84ff;top:50%;left:50%;transform:translate(-50%,-50%)
     </div>
   </div>
 </section>
-
-<style>
-.about{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
-.highlight{
-background:linear-gradient(135deg,#0a84ff22,#6dd5fa11);
-padding:30px;border-radius:16px
-}
-.contact{text-align:center;background:#0f141b}
-.phone{font-size:28px;font-weight:700;margin:15px 0}
-footer{text-align:center;padding:40px 0;color:#6b7c8f;font-size:14px}
-
-@media(max-width:768px){
-.hero h1{font-size:34px}
-.about{grid-template-columns:1fr}
-.menu a{font-size:26px}
-}
-</style>
 
 <section id="about">
   <div class="container about">
@@ -203,59 +238,6 @@ footer{text-align:center;padding:40px 0;color:#6b7c8f;font-size:14px}
 <footer>
   © 2026 Buckley Brothers Plumbing • Malden, MA
 </footer>
-<style>
 
-/* MOBILE FIRST OVERRIDES */
-@media(max-width:768px){
-
-/* TYPOGRAPHY */
-.hero h1{
-font-size:32px;
-line-height:1.2;
-}
-.hero p{
-font-size:16px;
-}
-
-/* NAV */
-.nav-inner{
-height:60px;
-}
-.logo{
-font-size:16px;
-}
-
-/* MENU */
-.menu a{
-font-size:26px;
-}
-
-/* SECTIONS */
-section{
-padding:60px 0;
-}
-h2{
-font-size:24px;
-}
-
-/* GRID */
-.grid{
-grid-template-columns:1fr;
-}
-
-/* ABOUT STACK */
-.about{
-grid-template-columns:1fr;
-gap:20px;
-}
-
-/* BUTTON */
-.cta{
-display:inline-block;
-padding:12px 16px;
-font-size:14px;
-}
-
-}
-
-</style>
+</body>
+</html>
