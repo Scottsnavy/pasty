@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu — Brick Oven Pizza</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+:root{
+--bg1:#0d1b2a;
+--bg2:#2a1a12;
+--card:#141416;
+--line:#262626;
+--accent:#ff3d3d;
+--muted:#a1a1a1;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Inter,sans-serif;
+background:radial-gradient(circle at top,var(--bg2),var(--bg1));
+color:#fff;
+}
+
+.container{max-width:1000px;margin:auto;padding:0 24px}
+
+header{
+position:sticky;top:0;
+background:rgba(10,10,10,.6);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--line);
+}
+
+.header-inner{
+display:flex;justify-content:space-between;align-items:center;
+padding:16px 0
+}
+
+.logo{font-weight:700}
+
+nav a{
+margin-left:18px;
+color:#ccc;
+text-decoration:none;
+font-size:14px
+}
+
+nav a:hover{color:#fff}
+
+.section{padding:60px 0;border-bottom:1px solid var(--line)}
+.section h2{margin-bottom:20px}
+
+.menu-list{
+display:flex;
+flex-direction:column;
+gap:14px
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+border-bottom:1px solid var(--line);
+padding-bottom:12px
+}
+
+.item-name{font-weight:600}
+.item-desc{font-size:13px;color:var(--muted)}
+.price{color:var(--accent);font-weight:600}
+
+.badge{
+font-size:11px;
+border:1px solid var(--line);
+padding:2px 6px;
+border-radius:4px;
+margin-left:8px;
+color:#ddd
+}
+
+.cta{
+text-align:center;
+padding:60px 0
+}
+
+.button{
+display:inline-block;
+background:linear-gradient(90deg,#ff3d3d,#ff6a6a);
+padding:12px 22px;
+border-radius:999px;
+font-weight:600;
+text-decoration:none;
+color:#fff
+}
+
+footer{
+text-align:center;
+padding:40px 0;
+color:#777;
+font-size:13px
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+<div class="logo">Brick Oven</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="#pizza">Pizza</a>
+<a href="#sides">Sides</a>
+<a href="#drinks">Drinks</a>
+</nav>
+</div>
+</header>
+
+<section id="pizza" class="section container">
+<h2>Pizza</h2>
+<div class="menu-list">
+
+<div class="item">
+<div>
+<div class="item-name">Margherita</div>
+<div class="item-desc">Tomato, fresh mozzarella, basil</div>
+</div>
+<div class="price">$14</div>
+</div>
+
+<div class="item">
+<div>
+<div class="item-name">Pepperoni Heat <span class="badge">Popular</span></div>
+<div class="item-desc">Pepperoni, chili oil, mozzarella</div>
+</div>
+<div class="price">$16</div>
+</div>
+
+<div class="item">
+<div>
+<div class="item-name">White Garlic</div>
+<div class="item-desc">Ricotta, garlic, olive oil</div>
+</div>
+<div class="price">$15</div>
+</div>
+
+<div class="item">
+<div>
+<div class="item-name">Garden Veg</div>
+<div class="item-desc">Seasonal vegetables, herbs</div>
+</div>
+<div class="price">$15</div>
+</div>
+
+</div>
+</section>
+
+<section id="sides" class="section container">
+<h2>Sides</h2>
+<div class="menu-list">
+
+<div class="item">
+<div>
+<div class="item-name">Garlic Knots</div>
+<div class="item-desc">Butter, garlic, parsley</div>
+</div>
+<div class="price">$6</div>
+</div>
+
+<div class="item">
+<div>
+<div class="item-name">House Salad</div>
+<div class="item-desc">Greens, vinaigrette</div>
+</div>
+<div class="price">$8</div>
+</div>
+
+</div>
+</section>
+
+<section id="drinks" class="section container">
+<h2>Drinks</h2>
+<div class="menu-list">
+
+<div class="item">
+<div>
+<div class="item-name">Soda</div>
+<div class="item-desc">Coke, Diet, Sprite</div>
+</div>
+<div class="price">$3</div>
+</div>
+
+<div class="item">
+<div>
+<div class="item-name">Sparkling Water</div>
+</div>
+<div class="price">$4</div>
+</div>
+
+</div>
+</section>
+
+<section class="cta container">
+<h2>Order Direct</h2>
+<a href="index.html#contact" class="button">Call Now</a>
+</section>
+
+<footer>
+<p>© 2026 Brick Oven Pizza</p>
+</footer>
+
+</body>
+</html>
