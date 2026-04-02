@@ -71,6 +71,28 @@ height:100%;
 stroke:currentColor;
 }
 
+.hero-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:40px;
+flex-wrap:wrap
+}
+
+.hero-text{
+flex:1;
+min-width:280px
+}
+
+.pizza-hero{
+flex:1;
+display:flex;
+justify-content:center;
+position:relative
+}
+
+/* keep your glow + pizza styles */
+
 /* ABOUT */
 .about{display:grid;gap:20px}
 .highlight{padding:20px;border-radius:12px;background:linear-gradient(135deg,#0a84ff22,#6dd5fa11)}
