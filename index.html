@@ -3,35 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buckley Brothers Plumbing | Malden MA</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
+<title>Brick Oven Pizza</title>
 
-<body>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<input type="checkbox" id="menu-toggle" class="menu-toggle">
+<style>
+:root{
+--bg1:#0b0b0c;
+--bg2:#1a0f12;
+--card:#141416;
+--line:#262626;
+--accent:#ff3d3d;
+--muted:#a1a1a1;
+}
 
-<nav class="nav">
-  <div class="container nav-inner">
-    <div class="logo">Buckley Brothers</div>
-    <label for="menu-toggle" class="hamburger">
-      <span></span><span></span><span></span>
-    </label>
-  </div>
-</nav>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,sans-serif;
+background:radial-gradient(circle at top, var(--bg2), var(--bg1));
+color:#fff;line-height:1.5
+}
 
-<div class="menu">
-  <label for="menu-toggle" class="close"></label>
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="contact.html">Contact</a>
-</div>
+.container{max-width:1100px;margin:auto;padding:0 24px}
+a{text-decoration:none;color:inherit}
 
-<!-- HERO -->
-<section class="hero container">
-  <h1>Plumbing. Done Right.</h1>
-  <p>Fast, clean, reliable service in Malden.</p>
+header{
+position:sticky;top:0;
+background:rgba(10,10,10,.6);
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--line);
+z-index:10
+}
+
+.header-inner{
+display:flex;justify-content:space-between;align-items:center;padding:16px 0
+}
+
+.logo{font-weight:700;letter-spacing:.6px}
+
+nav a{
+margin-left:20px;font-size:14px;color:#ccc
+}
+nav a:hover{color:#fff}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,64 +128,195 @@ to{transform:rotate(360deg)}
 
 </body>
 </html>
-  <!-- BUTTON -->
-  <a href="contact.html" class="cta">Get Help Now</a>
+.hero{
+padding:110px 0 70px;
+border-bottom:1px solid var(--line)
+}
+
+.hero h1{
+font-size:48px;
+background:linear-gradient(90deg,#fff,#ffb3b3);
+-webkit-background-clip:text;
+color:transparent;
+margin-bottom:12px
+}
+
+.hero p{color:var(--muted);max-width:520px}
+
+.badges{
+display:flex;gap:12px;margin-top:24px;flex-wrap:wrap
+}
+
+.badge{
+display:flex;align-items:center;gap:8px;
+padding:8px 12px;
+border-radius:999px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.03);
+font-size:12px;color:#ddd
+}
+
+.section{
+padding:70px 0;
+border-bottom:1px solid var(--line)
+}
+
+.section h2{
+margin-bottom:26px;
+font-size:24px
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px
+}
+
+.card{
+background:linear-gradient(145deg,#141416,#0f0f10);
+border:1px solid var(--line);
+border-radius:12px;
+padding:20px;
+transition:.25s
+}
+
+.card:hover{
+transform:translateY(-4px);
+border-color:#333;
+box-shadow:0 10px 30px rgba(0,0,0,.4)
+}
+
+.icon{color:var(--accent);margin-bottom:10px}
+
+.card h3{margin-bottom:6px}
+.card p{color:var(--muted);font-size:14px}
+
+.trust{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px
+}
+
+.trust-item{
+background:rgba(255,255,255,.02);
+border:1px solid var(--line);
+border-radius:10px;
+padding:18px
+}
+
+.trust-item strong{display:block;margin-bottom:6px}
+
+.cta{
+text-align:center;padding:80px 0
+}
+
+.button{
+display:inline-block;
+background:linear-gradient(90deg,#ff3d3d,#ff6a6a);
+padding:14px 26px;
+border-radius:999px;
+font-weight:600;
+margin-top:18px;
+box-shadow:0 6px 20px rgba(255,61,61,.3)
+}
+
+footer{
+padding:40px 0;
+text-align:center;
+color:#777;
+font-size:13px
+}
+
+@media(max-width:700px){
+nav{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+<div class="logo">Brick Oven Pizza</div>
+<nav>
+<a href="#menu">Menu</a>
+<a href="#about">About</a>
+<a href="#trust">Why Us</a>
+<a href="#contact">Contact</a>
+</nav>
+</div>
+</header>
+
+<section class="hero container" id="home">
+<h1>Wood-Fired. Perfected.</h1>
+<p>Heat, timing, and restraint. The difference is immediate.</p>
+
+<div class="badges">
+<div class="badge"><span class="material-icons">verified</span>Certified Clean</div>
+<div class="badge"><span class="material-icons">star</span>4.8 Rating</div>
+<div class="badge"><span class="material-icons">schedule</span>Always On Time</div>
+</div>
 </section>
 
-<!-- SERVICES -->
-<section class="container">
-  <h2>Services</h2>
+<section id="menu" class="section container">
+<h2>Menu</h2>
+<div class="grid">
 
-  <div class="grid">
+<div class="card">
+<div class="material-icons icon">local_pizza</div>
+<h3>Margherita</h3>
+<p>Tomato, mozzarella, basil</p>
+</div>
 
-    <div class="card">
-      <div class="icon">
-        <svg><use href="/assets/icons.svg#wrench"></use></svg>
-      </div>
-      <h3>Repairs</h3>
-      <p>Leaks handled fast.</p>
-    </div>
+<div class="card">
+<div class="material-icons icon">whatshot</div>
+<h3>Pepperoni Heat</h3>
+<p>Spicy oil, crisped edges</p>
+</div>
 
-    <div class="card">
-      <div class="icon">
-        <svg><use href="/assets/icons.svg#drop"></use></svg>
-      </div>
-      <h3>Drain Cleaning</h3>
-      <p>Clear pipes quickly.</p>
-    </div>
+<div class="card">
+<div class="material-icons icon">eco</div>
+<h3>Garden Fresh</h3>
+<p>Seasonal vegetables</p>
+</div>
 
-    <div class="card">
-      <div class="icon">
-        <svg><use href="/assets/icons.svg#heater"></use></svg>
-      </div>
-      <h3>Water Heaters</h3>
-      <p>Repair or replace systems.</p>
-    </div>
-
-  </div>
-
-  <!-- BUTTON -->
-  <div style="margin-top:20px">
-    <a href="services.html" class="cta">View All Services</a>
-  </div>
-
+</div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact">
-  <div class="container">
-    <h2>Need Help Today?</h2>
-    <p>Call now for fast service.</p>
+<section id="trust" class="section container">
+<h2>Why It Works</h2>
 
-    <div class="phone">(617) 555-1234</div>
+<div class="trust">
+<div class="trust-item">
+<strong>Fermented Dough</strong>
+<p>48-hour rise. Texture you notice instantly.</p>
+</div>
 
-    <!-- BUTTON -->
-    <a href="contact.html" class="cta">Contact Us</a>
-  </div>
+<div class="trust-item">
+<strong>Real Heat</strong>
+<p>900°. Not simulated. Not electric.</p>
+</div>
+
+<div class="trust-item">
+<strong>No Shortcuts</strong>
+<p>Ingredients speak. Nothing hidden.</p>
+</div>
+</div>
+</section>
+
+<section id="about" class="section container">
+<h2>About</h2>
+<p>We remove noise. Focus on craft. Deliver consistently.</p>
+</section>
+
+<section id="contact" class="cta container">
+<h2>Order Tonight</h2>
+<p>123 Main St • Open Daily 11–10</p>
+<a href="#contact" class="button">Call Now</a>
 </section>
 
 <footer>
-  © 2026 Buckley Brothers Plumbing • Malden, MA
+<p>© 2026 Brick Oven Pizza</p>
 </footer>
 
 </body>
