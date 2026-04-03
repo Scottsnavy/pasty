@@ -6,46 +6,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bud's Tees Pizza</title>
 
-  <!-- Google Font -->
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- Main Styles -->
-
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <!-- HERO SECTION -->
+<!-- HEADER -->
 
-  <section class="hero">
+<header class="header">
+  <div class="container nav">
+    <div class="logo">Bud’s Pizza</div>
+    <nav>
+      <a href="#">Menu</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-content">
 
 ```
-<div class="hero-content">
-  
-  <!-- LEFT: TEXT -->
-  <div class="hero-text">
-    <h1>Honest Pizza.<br>Made Right.</h1>
-    <p>
-      Fresh ingredients. Thoughtful preparation.  
-      A neighborhood place built on simplicity and care.
-    </p>
+<div class="hero-text">
+  <h1>Honest Pizza.<br>Made Right.</h1>
+  <p>Fresh ingredients. Thoughtful preparation. A neighborhood place built on simplicity and care.</p>
 
-    <a href="#" class="cta-button">View Menu</a>
+  <a href="#" class="cta-button">View Menu</a>
+
+  <!-- TRUST ICONS -->
+  <div class="trust">
+    <span>🍅 Fresh Ingredients</span>
+    <span>🔥 Wood Fired</span>
+    <span>⭐ Local Favorite</span>
   </div>
+</div>
 
-  <!-- RIGHT: IMAGE CAROUSEL -->
-  <div class="hero-media">
-    <div class="carousel">
-      <img src="assets/images/pizza-1.webp" alt="Fresh pizza" class="hero-image">
-      <img src="assets/images/pizza-2.webp" alt="Fresh pizza" class="hero-image">
-    </div>
+<div class="hero-media">
+  <div class="carousel">
+    <img src="assets/images/pizza-1.webp">
+    <img src="assets/images/pizza-2.webp">
   </div>
-
 </div>
 ```
 
-  </section>
+  </div>
+</section>
+
+<!-- MENU -->
+
+<section class="menu container">
+  <h2>Our Favorites</h2>
+
+  <div class="menu-grid">
+
+```
+<div class="menu-item">
+  <h3>Margherita</h3>
+  <p>Tomato, mozzarella, basil</p>
+  <span>$14</span>
+</div>
+
+<div class="menu-item">
+  <h3>Pepperoni</h3>
+  <p>Classic, crisped edges</p>
+  <span>$16</span>
+</div>
+
+<div class="menu-item">
+  <h3>White Pie</h3>
+  <p>Ricotta, garlic, olive oil</p>
+  <span>$15</span>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="about container">
+  <h2>Our Story</h2>
+  <p>
+    Built on a simple idea: do a few things well. We source carefully,
+    cook thoughtfully, and serve our neighborhood with pride.
+  </p>
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+  <div class="container footer-content">
+    <p>© 2026 Bud’s Pizza</p>
+    <p>Malden, MA</p>
+  </div>
+</footer>
 
 </body>
 </html>
