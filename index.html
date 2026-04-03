@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bud's Tees Pizza</title>
+  <title>Bud's Pizza</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -16,7 +16,7 @@
 <header class="header">
   <div class="container nav">
     <div class="logo">Bud’s Pizza</div>
-    <nav>
+    <nav class="nav-links">
       <a href="#">Menu</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
@@ -27,7 +27,7 @@
 <!-- HERO -->
 
 <section class="hero">
-  <div class="hero-content">
+  <div class="container hero-content">
 
 ```
 <div class="hero-text">
@@ -36,11 +36,10 @@
 
   <a href="#" class="cta-button">View Menu</a>
 
-  <!-- TRUST ICONS -->
   <div class="trust">
-    <span>🍅 Fresh Ingredients</span>
-    <span>🔥 Wood Fired</span>
-    <span>⭐ Local Favorite</span>
+    <div>🔥 Wood Fired</div>
+    <div>🍅 Fresh Ingredients</div>
+    <div>⭐ Local Favorite</div>
   </div>
 </div>
 
@@ -57,28 +56,29 @@
 
 <!-- MENU -->
 
-<section class="menu container">
-  <h2>Our Favorites</h2>
-
-  <div class="menu-grid">
+<section class="section">
+  <div class="container">
+    <h2>Favorites</h2>
 
 ```
-<div class="menu-item">
-  <h3>Margherita</h3>
-  <p>Tomato, mozzarella, basil</p>
-  <span>$14</span>
-</div>
+<div class="menu-grid">
+  <div class="card">
+    <h3>Margherita</h3>
+    <p>Tomato, mozzarella, basil</p>
+    <span>$14</span>
+  </div>
 
-<div class="menu-item">
-  <h3>Pepperoni</h3>
-  <p>Classic, crisped edges</p>
-  <span>$16</span>
-</div>
+  <div class="card">
+    <h3>Pepperoni</h3>
+    <p>Classic, crisped edges</p>
+    <span>$16</span>
+  </div>
 
-<div class="menu-item">
-  <h3>White Pie</h3>
-  <p>Ricotta, garlic, olive oil</p>
-  <span>$15</span>
+  <div class="card">
+    <h3>White Pie</h3>
+    <p>Ricotta, garlic, olive oil</p>
+    <span>$15</span>
+  </div>
 </div>
 ```
 
@@ -87,20 +87,22 @@
 
 <!-- ABOUT -->
 
-<section class="about container">
-  <h2>Our Story</h2>
-  <p>
-    Built on a simple idea: do a few things well. We source carefully,
-    cook thoughtfully, and serve our neighborhood with pride.
-  </p>
+<section class="section alt">
+  <div class="container">
+    <h2>Our Story</h2>
+    <p>
+      We believe in doing a few things well. Careful sourcing, simple recipes,
+      and a space that feels like home.
+    </p>
+  </div>
 </section>
 
 <!-- FOOTER -->
 
 <footer class="footer">
   <div class="container footer-content">
-    <p>© 2026 Bud’s Pizza</p>
-    <p>Malden, MA</p>
+    <div>© 2026 Bud’s Pizza</div>
+    <div>Malden, MA</div>
   </div>
 </footer>
 
