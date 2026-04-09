@@ -1,100 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buds Pizza</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#9B2226">
+    <title>THE PHO PROJECT | Artisan Vietnamese</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --primary: #9B2226;
+            --secondary: #EE9B00;
+            --accent: #0A9396;
+            --bg: #FDFCF5;
+            --text: #1A1A1A;
+            --dark: #111111;
+            --interval: 12s;
+            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        html, body {
+            height: 100dvh;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Jost', sans-serif;
+            overflow: hidden; 
+        }
+
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: .04; pointer-events: none; z-index: 5000;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+        }
+
+        /* --- NAVIGATION LOGIC --- */
+        #menu-toggle { display: none; }
+
+        /* The Drawer */
+        .nav-drawer {
+            position: fixed; top: 0; right: -100%; width: 85%; height: 100%;
+            background: var(--dark); z-index: 9000; display: flex; flex-direction: column;
+            justify-content: center; padding: 10%; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* The Scrim */
+        .scrim {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            z-index: 8000; opacity: 0; pointer-events: none; transition: 0.5s;
+        }
+
+        /* --- THE SWITCHES --- */
+        #menu-toggle:checked ~ .nav-drawer { right: 0; }
+        #menu-toggle:checked ~ .scrim { opacity: 1; pointer-events: auto; }
+
+        /* THE "X" FIX: When checked, force the button to the absolute top layer */
+        #menu-toggle:checked ~ .page-wrapper .menu-btn { 
+            position: fixed; /* Teleport out of header flow */
+            top: 20px; /* Match mobile spacing */
+            right: 6%;
+            z-index: 10000; 
+            background: var(--primary); 
+            transform: rotate(90deg); 
+        }
+        
+        #menu-toggle:checked ~ .page-wrapper .menu-btn span:nth-child(1) { transform: translateY(2.5px) rotate(45deg); background: #fff; }
+        #menu-toggle:checked ~ .page-wrapper .menu-btn span:nth-child(2) { transform: translateY(-2.5px) rotate(-45deg); background: #fff; }
+
+        .nav-links { list-style: none; }
+        .nav-links a { color: white; text-decoration: none; font-family: 'DM Serif Display', serif; font-size: 2.2rem; display: block; margin-bottom: 25px; }
+
+        /* --- LAYOUT --- */
+        .page-wrapper { display: flex; flex-direction: column; height: 100%; width: 100%; position: relative; }
+
+        .visual-strip { flex: 1.2; min-height: 200px; position: relative; overflow: hidden; background: #111; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; animation: kenBurns var(--interval) linear infinite; }
+        .slide-1 { background-image: url('/assets/images/pho.png'); animation-delay: 0s; }
+        .slide-2 { background-image: url('/assets/images/pho1.png'); animation-delay: 6s; }
+
+        @keyframes kenBurns { 0% { opacity: 0; transform: scale(1.05); } 10% { opacity: 1; } 45% { opacity: 1; } 55% { opacity: 0; transform: scale(1); } 100% { opacity: 0; } }
+
+        header {
+            flex: 0 0 80px; background: var(--bg); display: flex; 
+            justify-content: space-between; align-items: center; padding: 0 6%; 
+            z-index: 1000; border-top: 3.5px solid var(--secondary); border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+        
+        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; text-decoration: none; color: var(--text); letter-spacing: 1.5px; }
+
+        .menu-btn {
+            width: 42px; height: 42px; background: var(--text); border-radius: 50%; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;
+            cursor: pointer; transition: 0.4s var(--spring);
+            position: relative; /* Normal state */
+        }
+        .menu-btn span { width: 16px; height: 1.5px; background: var(--secondary); transition: 0.4s; }
+
+        main { flex: 0 0 auto; padding: 25px 6% 15px 6%; display: flex; flex-direction: column; }
+        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.1; margin-bottom: 12px; }
+        h1 em { color: var(--primary); font-style: italic; }
+        .deck { font-size: 0.88rem; line-height: 1.6; opacity: 0.6; margin-bottom: 20px; max-width: 440px; }
+        .cta-btn { display: inline-block; background: var(--text); color: white; padding: 12px 30px; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.68rem; width: fit-content; margin-bottom: 25px; }
+
+        .footer-top { display: flex; justify-content: space-between; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .info-box h4 { font-size: 0.58rem; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 4px; text-transform: uppercase; }
+        .info-box p { font-family: 'DM Serif Display', serif; font-size: 1.05rem; }
+        .sub-footer { margin-top: 18px; display: flex; justify-content: space-between; font-size: 0.55rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 1px; }
+
+        @media (max-height: 640px) {
+            .visual-strip { flex: 1; }
+            header { flex: 0 0 70px; }
+            #menu-toggle:checked ~ .page-wrapper .menu-btn { top: 14px; width: 38px; height: 38px; }
+            main { padding: 15px 6% 10px 6%; }
+            .deck { display: none; }
+            h1 { font-size: 1.7rem; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="header">
-  <div class="container nav">
-    <div class="logo">Buds Pizza</div>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="full-menu.html">Menu</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+    <input type="checkbox" id="menu-toggle">
+    <label for="menu-toggle" class="scrim"></label>
+    
+    <nav class="nav-drawer">
+        <ul class="nav-links">
+            <li><a href="#">The Menu</a></li>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </nav>
-  </div>
-</header>
 
-<section class="hero">
-  <div class="container hero-content">
+    <div class="page-wrapper">
+        <section class="visual-strip">
+            <div class="slide slide-1"></div>
+            <div class="slide slide-2"></div>
+        </section>
 
-    <div class="hero-text">
-      <h1>
-        <span class="light">Wood Fired.</span><br>
-        <span class="strong">No Shortcuts.</span>
-      </h1>
+        <header>
+            <a href="#" class="logo">PHO PROJECT</a>
+            <label for="menu-toggle" class="menu-btn">
+                <span></span>
+                <span></span>
+            </label>
+        </header>
 
-      <p>
-        Fresh ingredients. Thoughtful preparation. A neighborhood place built on simplicity and care.
-      </p>
+        <main>
+            <div class="text-content">
+                <h1>The Art of<br>The <em>Slow</em> Simmer.</h1>
+                <p class="deck">Sixteen hours of bone-broth reduction meets toasted heirloom spices. A tradition refined for the modern palate.</p>
+                <a href="#" class="cta-btn">View Menu</a>
+            </div>
 
-      <a href="full-menu.html" class="cta-button">View Menu</a>
+            <div class="footer-wrap">
+                <div class="footer-top">
+                    <div class="info-box">
+                        <h4>Visit Chelsea</h4>
+                        <p>88 Noodle Way, NY</p>
+                    </div>
+                    <div class="info-box" style="text-align: right;">
+                        <h4>Daily Hours</h4>
+                        <p>11:00 — 22:00</p>
+                    </div>
+                </div>
 
-      <div class="trust">
-        <div>Wood Fired</div>
-        <div>Fresh Ingredients</div>
-        <div>Local Favorite</div>
-      </div>
+                <div class="sub-footer">
+                    <p>&copy; 2026 PHO PROJECT</p>
+                    <p>Soul in Every Bowl</p>
+                </div>
+            </div>
+        </main>
     </div>
-
-    <div class="hero-media">
-      <div class="carousel">
-        <img src="assets/images/pizza-1.webp" alt="Pizza">
-        <img src="assets/images/pizza-2.webp" alt="Pizza">
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <h2>Favorites</h2>
-
-    <div class="menu-grid">
-      <div class="card">
-        <h3>Margherita</h3>
-        <p>Tomato, mozzarella, basil</p>
-        <span>$14</span>
-      </div>
-
-      <div class="card">
-        <h3>Pepperoni</h3>
-        <p>Classic, crisped edges</p>
-        <span>$16</span>
-      </div>
-
-      <div class="card">
-        <h3>White Pie</h3>
-        <p>Ricotta, garlic, olive oil</p>
-        <span>$15</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section alt">
-  <div class="container">
-    <h2>Our Story</h2>
-    <p>
-      Built on a simple idea. Do a few things well. Serve the neighborhood with care.
-    </p>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container footer-content">
-    <div>© 2026 Buds Pizza</div>
-    <div>Malden MA</div>
-  </div>
-</footer>
 
 </body>
 </html>
