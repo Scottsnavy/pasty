@@ -2,181 +2,167 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#9B2226">
-    <title>THE PHO PROJECT | Artisan Vietnamese</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HYPERKIND | The Chronology</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Jost:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #9B2226;
-            --secondary: #EE9B00;
-            --accent: #0A9396;
-            --bg: #FDFCF5;
-            --text: #1A1A1A;
-            --dark: #111111;
-            --interval: 12s;
-            --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --primary: #4A5D4E;    /* Moss Green */
+            --bg-paper: #F5F2E9;   /* Antique Parchment */
+            --text-main: #2D362E;
+            --accent-ink: #8C7355; /* Ink/Wood tone */
+            --interval: 5s;        /* Slow, deliberate pace */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
-        html, body {
-            height: 100dvh;
-            background-color: var(--bg);
-            color: var(--text);
+        body {
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: 'EB Garamond', serif;
+            line-height: 1.6;
+        }
+
+        /* The 'Book' Layout Container */
+        .manuscript {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Chapter Introductions */
+        .chapter-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .chapter-num {
             font-family: 'Jost', sans-serif;
-            overflow: hidden; 
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.7rem;
+            color: var(--accent-ink);
+            display: block;
+            margin-bottom: 10px;
         }
 
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            opacity: .04; pointer-events: none; z-index: 5000;
-            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+        .chapter-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            line-height: 1.1;
         }
 
-        /* --- THE FIXED UI ELEMENTS (TOP LEVEL) --- */
-        #menu-toggle { display: none; }
-
-        /* THE BUTTON: Fixed Top-Right permanently */
-        .menu-btn {
-            position: fixed;
-            top: 18px; 
-            right: 6%;
-            width: 44px; height: 44px;
-            background: var(--text);
-            border-radius: 50%;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;
-            cursor: pointer;
-            z-index: 10000; /* ABOVE EVERYTHING */
-            transition: 0.4s var(--spring);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        /* --- THE FILM PLATE (The Sprite) --- */
+        .visual-plate {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            background: #fff;
+            margin: 40px 0;
+            overflow: hidden;
+            /* Thin border like an old photograph */
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 10px;
         }
 
-        .menu-btn span { width: 16px; height: 1.5px; background: var(--secondary); transition: 0.4s; }
-
-        /* THE DRAWER: Just below the button */
-        .nav-drawer {
-            position: fixed; top: 0; right: -100%; width: 85%; height: 100%;
-            background: var(--dark); z-index: 9000; display: flex; flex-direction: column;
-            justify-content: center; padding: 10%; transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        .visual-window {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
 
-        /* THE SCRIM: Backdrop */
-        .scrim {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-            z-index: 8000; opacity: 0; pointer-events: none; transition: 0.5s;
+        .film-tape {
+            position: absolute;
+            top: 0; left: 0;
+            height: 100%; width: 500%;
+            object-fit: cover;
+            animation: slideTape var(--interval) steps(5) infinite;
         }
 
-        /* --- TOGGLE ACTIONS --- */
-        #menu-toggle:checked ~ .scrim { opacity: 1; pointer-events: auto; }
-        #menu-toggle:checked ~ .nav-drawer { right: 0; }
-        
-        #menu-toggle:checked ~ .menu-btn { background: var(--primary); transform: rotate(90deg); }
-        #menu-toggle:checked ~ .menu-btn span:nth-child(1) { transform: translateY(2.5px) rotate(45deg); background: #fff; }
-        #menu-toggle:checked ~ .menu-btn span:nth-child(2) { transform: translateY(-2.5px) rotate(-45deg); background: #fff; }
-
-        .nav-links { list-style: none; }
-        .nav-links a { color: white; text-decoration: none; font-family: 'DM Serif Display', serif; font-size: 2.2rem; display: block; margin-bottom: 25px; }
-
-        /* --- PAGE CONTENT --- */
-        .page-wrapper { display: flex; flex-direction: column; height: 100%; width: 100%; position: relative; }
-
-        .visual-strip { flex: 1.2; min-height: 200px; position: relative; overflow: hidden; background: #111; }
-        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; animation: kenBurns var(--interval) linear infinite; }
-        .slide-1 { background-image: url('/assets/images/pho.png'); animation-delay: 0s; }
-        .slide-2 { background-image: url('/assets/images/pho1.png'); animation-delay: 6s; }
-
-        @keyframes kenBurns { 0% { opacity: 0; transform: scale(1.05); } 10% { opacity: 1; } 45% { opacity: 1; } 55% { opacity: 0; transform: scale(1); } 100% { opacity: 0; } }
-
-        header {
-            flex: 0 0 80px; background: var(--bg); display: flex; 
-            align-items: center; padding: 0 6%; 
-            z-index: 500; /* Low z-index so button stays on top */
-            border-top: 3.5px solid var(--secondary); border-bottom: 1px solid rgba(0,0,0,0.04);
+        @keyframes slideTape {
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
         }
-        
-        .logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; text-decoration: none; color: var(--text); letter-spacing: 1.5px; }
 
-        main { flex: 0 0 auto; padding: 25px 6% 15px 6%; display: flex; flex-direction: column; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.1; margin-bottom: 12px; }
-        h1 em { color: var(--primary); font-style: italic; }
-        .deck { font-size: 0.88rem; line-height: 1.6; opacity: 0.6; margin-bottom: 20px; max-width: 440px; }
-        .cta-btn { display: inline-block; background: var(--text); color: white; padding: 12px 30px; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.68rem; width: fit-content; margin-bottom: 25px; }
+        /* Marginalia / Handwritten Notes */
+        .marginal-note {
+            font-style: italic;
+            color: var(--accent-ink);
+            max-width: 600px;
+            margin: 20px auto 80px auto;
+            padding: 0 40px;
+            position: relative;
+            font-size: 1.2rem;
+            text-align: center;
+        }
 
-        .footer-top { display: flex; justify-content: space-between; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
-        .info-box h4 { font-size: 0.58rem; letter-spacing: 0.25em; color: var(--accent); margin-bottom: 4px; text-transform: uppercase; }
-        .info-box p { font-family: 'DM Serif Display', serif; font-size: 1.05rem; }
-        .sub-footer { margin-top: 18px; display: flex; justify-content: space-between; font-size: 0.55rem; opacity: 0.3; text-transform: uppercase; letter-spacing: 1px; }
+        .marginal-note::before {
+            content: "“";
+            position: absolute;
+            left: 0; top: -10px;
+            font-size: 3rem;
+            opacity: 0.2;
+            font-family: 'DM Serif Display';
+        }
 
-        @media (max-height: 640px) {
-            .visual-strip { flex: 1; }
-            header { flex: 0 0 70px; }
-            .menu-btn { top: 13px; width: 38px; height: 38px; }
-            main { padding: 15px 6% 10px 6%; }
-            .deck { display: none; }
-            h1 { font-size: 1.7rem; }
+        /* Prose Content */
+        .prose-block {
+            max-width: 650px;
+            margin: 0 auto 100px auto;
+            font-size: 1.25rem;
+            text-align: justify;
+        }
+
+        .prose-block p { margin-bottom: 30px; }
+
+        @media (max-width: 768px) {
+            .chapter-title { font-size: 2.2rem; }
+            .visual-plate { height: 40vh; }
+            .prose-block { text-align: left; }
         }
     </style>
 </head>
 <body>
 
-    <input type="checkbox" id="menu-toggle">
-    
-    <label for="menu-toggle" class="scrim"></label>
-    
-    <nav class="nav-drawer">
-        <ul class="nav-links">
-            <li><a href="#">The Menu</a></li>
-            <li><a href="#">Our Story</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <label for="menu-toggle" class="menu-btn">
-        <span></span>
-        <span></span>
-    </label>
-
-    <div class="page-wrapper">
-        <section class="visual-strip">
-            <div class="slide slide-1"></div>
-            <div class="slide slide-2"></div>
-        </section>
-
-        <header>
-            <a href="#" class="logo">PHO PROJECT</a>
+    <div class="manuscript">
+        
+        <header class="chapter-header">
+            <span class="chapter-num">Chapter One</span>
+            <h1 class="chapter-title">The Foundation</h1>
         </header>
 
-        <main>
-            <div class="text-content">
-                <h1>The Art of<br>The <em>Slow</em> Simmer.</h1>
-                <p class="deck">Sixteen hours of bone-broth reduction meets toasted heirloom spices. A tradition refined for the modern palate.</p>
-                <a href="#" class="cta-btn">View Menu</a>
+        <div class="visual-plate">
+            <div class="visual-window">
+                <img src="assets/images/pho_5wide.webp" class="film-tape">
             </div>
+        </div>
 
-            <div class="footer-wrap">
-                <div class="footer-top">
-                    <div class="info-box">
-                        <h4>Visit Chelsea</h4>
-                        <p>88 Noodle Way, NY</p>
-                    </div>
-                    <div class="info-box" style="text-align: right;">
-                        <h4>Daily Hours</h4>
-                        <p>11:00 — 22:00</p>
-                    </div>
-                </div>
+        <div class="marginal-note">
+            The light in the garden was doing exactly what we hoped it would. Everything felt still, yet moving all at once.
+        </div>
 
-                <div class="sub-footer">
-                    <p>&copy; 2026 PHO PROJECT</p>
-                    <p>Soul in Every Bowl</p>
-                </div>
-            </div>
-        </main>
+        <article class="prose-block">
+            <p>It began not with a grand gesture, but with the quiet realization that certain moments are built to endure. We looked at the horizon—a soft blend of moss and oak—and understood that our story was being etched into the very landscape of New England.</p>
+            <p>The air carried the scent of heritage. There is a specific kind of weight to history when you are standing in it; a gravity that pulls at the present and anchors it to the past.</p>
+        </article>
+
+        <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.05); margin: 100px 0;">
+
+        <header class="chapter-header">
+            <span class="chapter-num">Chapter Two</span>
+            <h1 class="chapter-title">The Kinetic Shift</h1>
+        </header>
+        
+        <article class="prose-block" style="margin-top: 40px;">
+            <p>Evolution is rarely a straight line. It is a series of snaps, much like the shutter of a camera or the turning of a page. Here, we found the rhythm—the HyperKind pace—where performance met the soul.</p>
+        </article>
+
     </div>
 
 </body>
