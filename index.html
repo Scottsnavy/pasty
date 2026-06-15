@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Code Cheeseburger // Loop</title>
+    <title>Procedural CSS Illustration // Static & Interactive</title>
     <style>
+        :root {
+            /* Interactive offset factor controlled by scroll/mouse */
+            --spread: 0px;
+            
+            /* Color Palette */
+            --bg-main: #111116;
+            --canvas-bg: #1e1e2f;
+            --canvas-border: #3a3a50;
+            --text-muted: #5a5a7a;
+            --text-bright: #8a8ab0;
+            
+            --bun-top: #e68a00;
+            --bun-bottom: #d37e00;
+            --tomato: #ff4444;
+            --lettuce: #2ecc71;
+            --cheese: #f1c40f;
+            --patty: #5c3a21;
+            --patty-shadow: #442a18;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,20 +32,22 @@
         }
 
         body {
-            background-color: #111116;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            background-color: var(--bg-main);
+            color: #fff;
             font-family: monospace;
+            min-height: 150vh; /* Extra height to allow scrolling interaction */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px;
         }
 
         /* Strict 4:6 Aspect Ratio Container */
         .canvas {
             width: 400px;
             height: 600px;
-            background: #1e1e2f;
-            border: 3px solid #3a3a50;
+            background: var(--canvas-bg);
+            border: 3px solid var(--canvas-border);
             border-radius: 20px;
             position: relative;
             display: flex;
@@ -34,9 +56,11 @@
             align-items: center;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            position: sticky; /* Keeps it locked in view while scrolling */
+            top: 10vh;
         }
 
-        /* Burger Stack Container with Infinite Loop Animation */
+        /* Burger Stack Container */
         .burger-container {
             display: flex;
             flex-direction: column;
@@ -44,37 +68,37 @@
             justify-content: center;
             width: 100%;
             height: auto;
-            /* 4s loop, smooth acceleration/deceleration, infinite repeat, reverses direction on alternate cycles */
-            animation: explode 4s ease-in-out infinite alternate;
         }
 
-        /* CSS Keyframes for the Loop */
-        @keyframes explode {
-            0% {
-                gap: 6px; /* Compact assembled state */
-            }
-            100% {
-                gap: 28px; /* Exploded schematic view */
-            }
-        }
-
-        /* Base Ingredient Styling */
+        /* THE MAGIC: GPU-Accelerated Hardware Transitions
+           Using transform instead of gap shifts the load entirely to the GPU compositor layer,
+           making it wildly lighter and more responsive than decoding a WebP file.
+        */
         .layer {
             display: block;
             min-height: 20px;
             border-radius: 6px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform; /* Signals browser to optimize via hardware */
         }
+
+        /* Individual layer translations multiplied based on vertical position */
+        .l1 { transform: translateY(calc(var(--spread) * -2.5)); }
+        .l2 { transform: translateY(calc(var(--spread) * -1.5)); }
+        .l3 { transform: translateY(calc(var(--spread) * -0.6)); }
+        .l4 { transform: translateY(calc(var(--spread) * 0.2)); }
+        .l5 { transform: translateY(calc(var(--spread) * 1.2)); }
+        .l6 { transform: translateY(calc(var(--spread) * 2.2)); }
 
         .bun-top {
             width: 260px;
             height: 70px;
-            background: #e68a00;
+            background: var(--bun-top);
             border-radius: 120px 120px 10px 10px;
             position: relative;
         }
 
-        /* Procedural CSS Sesame Seeds */
         .bun-top::before {
             content: "•  •  •  •  •";
             position: absolute;
@@ -97,7 +121,7 @@
 
         .tomato {
             flex: 1;
-            background: #ff4444;
+            background: var(--tomato);
             border-radius: 8px;
             height: 100%;
             box-shadow: 0 4px 6px rgba(0,0,0,0.15);
@@ -106,19 +130,18 @@
         .lettuce {
             width: 270px;
             height: 20px;
-            background: #2ecc71;
+            background: var(--lettuce);
             border-radius: 20px 5px 20px 5px;
         }
 
         .cheese {
             width: 265px;
             height: 15px;
-            background: #f1c40f;
+            background: var(--cheese);
             position: relative;
             border-radius: 4px;
         }
 
-        /* Cheese Melt Extrusion */
         .cheese::after {
             content: '';
             position: absolute;
@@ -126,57 +149,110 @@
             left: 30px;
             width: 25px;
             height: 20px;
-            background: #f1c40f;
+            background: var(--cheese);
             border-radius: 0 0 10px 10px;
         }
 
         .patty {
             width: 260px;
             height: 50px;
-            background: #5c3a21;
+            background: var(--patty);
             border-radius: 15px;
-            border-bottom: 6px solid #442a18;
+            border-bottom: 6px solid var(--patty-shadow);
         }
 
         .bun-bottom {
             width: 255px;
             height: 45px;
-            background: #d37e00;
+            background: var(--bun-bottom);
             border-radius: 6px 6px 40px 40px;
         }
 
         /* UI Overlay Elements */
         .ui-text {
             position: absolute;
-            color: #5a5a7a;
+            color: var(--text-muted);
             font-size: 11px;
             letter-spacing: 2px;
         }
         .ui-top-left  { top: 25px; left: 25px; }
         .ui-top-right { top: 25px; right: 25px; }
-        .ui-bottom    { bottom: 30px; color: #8a8ab0; font-weight: bold; }
+        .ui-bottom    { bottom: 30px; color: var(--text-bright); font-weight: bold; }
+
+        /* Subtle scroll reminder helper */
+        .scroll-indicator {
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
-    <div class="canvas">
+    <div class="canvas" id="canvas">
         <div class="ui-text ui-top-left">SPEC // 04-06.AR</div>
-        <div class="ui-text ui-top-right">RENDER: LOOP_ACTIVE</div>
+        <div class="ui-text ui-top-right">RENDER: STATIC_INTERACTIVE</div>
 
         <div class="burger-container">
-            <div class="layer bun-top"></div>
-            <div class="tomatoes">
+            <div class="layer bun-top l1"></div>
+            <div class="layer tomatoes l2">
                 <div class="tomato"></div>
                 <div class="tomato"></div>
             </div>
-            <div class="layer lettuce"></div>
-            <div class="layer cheese"></div>
-            <div class="layer patty"></div>
-            <div class="layer bun-bottom"></div>
+            <div class="layer lettuce l3"></div>
+            <div class="layer cheese l4"></div>
+            <div class="layer patty l5"></div>
+            <div class="layer bun-bottom l6"></div>
         </div>
 
-        <div class="ui-text ui-bottom">LOOPING SCHEMA // ANIM_ACTIVE</div>
+        <div class="ui-text ui-bottom" id="ui-status">SYSTEM // ASSEMBLED</div>
     </div>
+
+    <div class="scroll-indicator">↓ Scroll page or move mouse to expand schema ↓</div>
+
+    <script>
+        const root = document.documentElement;
+        const canvas = document.getElementById('canvas');
+        const statusText = document.getElementById('ui-status');
+        
+        // 1. Scroll Interaction (Calculates explosion scale based on viewport scroll)
+        window.addEventListener('scroll', () => {
+            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            const spreadValue = Math.min(Math.max(scrollPercent * 60, 0), 45); // Max 45px separation
+            
+            root.style.setProperty('--spread', `${spreadValue}px`);
+            updateStatus(spreadValue);
+        });
+
+        // 2. Mouse Move Interaction (Overrides or adds minor play when hovering inside the canvas)
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const y = e.clientY - rect.top; // Mouse position inside canvas
+            const intensity = Math.abs((rect.height / 2) - y) / 4; // Distance from center
+            const spreadValue = Math.min(intensity, 35);
+            
+            root.style.setProperty('--spread', `${spreadValue}px`);
+            updateStatus(spreadValue);
+        });
+
+        // Reset spread when mouse leaves canvas (unless page is scrolled down)
+        canvas.addEventListener('mouseleave', () => {
+            if (window.scrollY === 0) {
+                root.style.setProperty('--spread', '0px');
+                statusText.innerText = "SYSTEM // ASSEMBLED";
+            }
+        });
+
+        function updateStatus(val) {
+            if (val > 5) {
+                statusText.innerText = `DECONSTRUCTING // DEPTH: ${Math.round(val * 2)}mm`;
+            } else {
+                statusText.innerText = "SYSTEM // ASSEMBLED";
+            }
+        }
+    </script>
 
 </body>
 </html>
