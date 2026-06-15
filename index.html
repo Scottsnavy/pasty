@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Code Cheeseburger</title>
+    <title>Creative Code Cheeseburger // Loop</title>
     <style>
         * {
             box-sizing: border-box;
@@ -36,16 +36,26 @@
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
-        /* Burger Stack Container */
+        /* Burger Stack Container with Infinite Loop Animation */
         .burger-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
             width: 100%;
             height: auto;
-            transition: gap 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            /* 4s loop, smooth acceleration/deceleration, infinite repeat, reverses direction on alternate cycles */
+            animation: explode 4s ease-in-out infinite alternate;
+        }
+
+        /* CSS Keyframes for the Loop */
+        @keyframes explode {
+            0% {
+                gap: 6px; /* Compact assembled state */
+            }
+            100% {
+                gap: 28px; /* Exploded schematic view */
+            }
         }
 
         /* Base Ingredient Styling */
@@ -53,7 +63,7 @@
             display: block;
             min-height: 20px;
             border-radius: 6px;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
         }
 
         .bun-top {
@@ -64,7 +74,7 @@
             position: relative;
         }
 
-        /* Embedded Seed Indicators */
+        /* Procedural CSS Sesame Seeds */
         .bun-top::before {
             content: "•  •  •  •  •";
             position: absolute;
@@ -90,6 +100,7 @@
             background: #ff4444;
             border-radius: 8px;
             height: 100%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
         }
 
         .lettuce {
@@ -107,7 +118,7 @@
             border-radius: 4px;
         }
 
-        /* Cheese Melt */
+        /* Cheese Melt Extrusion */
         .cheese::after {
             content: '';
             position: absolute;
@@ -144,18 +155,13 @@
         .ui-top-left  { top: 25px; left: 25px; }
         .ui-top-right { top: 25px; right: 25px; }
         .ui-bottom    { bottom: 30px; color: #8a8ab0; font-weight: bold; }
-
-        /* Deconstruct Hover Trigger */
-        .canvas:hover .burger-container {
-            gap: 25px;
-        }
     </style>
 </head>
 <body>
 
     <div class="canvas">
         <div class="ui-text ui-top-left">SPEC // 04-06.AR</div>
-        <div class="ui-text ui-top-right">RENDER: CSS_SOLID</div>
+        <div class="ui-text ui-top-right">RENDER: LOOP_ACTIVE</div>
 
         <div class="burger-container">
             <div class="layer bun-top"></div>
@@ -169,7 +175,7 @@
             <div class="layer bun-bottom"></div>
         </div>
 
-        <div class="ui-text ui-bottom">HOVER TO EXPAND STACK</div>
+        <div class="ui-text ui-bottom">LOOPING SCHEMA // ANIM_ACTIVE</div>
     </div>
 
 </body>
