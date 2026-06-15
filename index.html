@@ -3,156 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Vector Symbol Matrix</title>
+    <title>Creative Code Cheeseburger</title>
     <style>
-        * { box-sizing: border-box; }
-        body {
-            background-color: #0a0a0c;
+        :root {
+            --bg-color: #1a1a24;
+            --bun-top: #df8c3d;
+            --bun-bottom: #c97627;
+            --patty: #593122;
+            --cheese: #ffcc00;
+            --lettuce: #5cb85c;
+            --tomato: #d9534f;
+            --sesame: #f5f5dc;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            min-height: 100vh;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            font-family: monospace;
             overflow: hidden;
-            font-family: system-ui, sans-serif;
         }
-        .canvas-container {
+
+        /* 4:6 Aspect Ratio Container */
+        .canvas {
+            width: 400px;
+            height: 600px;
+            background: radial-gradient(circle at center, #2a2b3d 0%, #111118 100%);
+            border: 2px solid #33354a;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             position: relative;
-            width: 100%;
-            max-width: 800px;
-            aspect-ratio: 4 / 6;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
         }
-        canvas {
+
+        /* Technical Overlay Grid Line */
+        .canvas::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%; width: 1px; height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05), transparent);
+            pointer-events: none;
+        }
+
+        /* Burger Stack Wrapper */
+        .burger-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px; /* Controlled explosion spacing */
+            transform: translateY(-10px);
+        }
+
+        /* Ingredient Base Properties */
+        .layer {
+            position: relative;
+            width: 280px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        /* Top Bun */
+        .top-bun {
+            height: 75px;
+            background: linear-gradient(180deg, var(--bun-top) 0%, var(--bun-bottom) 100%);
+            border-radius: 140px 140px 15px 15px;
+            overflow: hidden;
+        }
+
+        /* Procedural-style Sesame Seeds */
+        .sesame-seeds {
+            position: absolute;
             width: 100%;
             height: 100%;
-            display: block;
-            background: #111115;
-            border: 1px solid #222227;
+        }
+        .seed {
+            position: absolute;
+            width: 6px;
+            height: 12px;
+            background-color: var(--sesame);
+            border-radius: 50%;
+            transform: rotate(25deg);
+            opacity: 0.85;
+        }
+        .seed:nth-child(1) { top: 25px; left: 60px; transform: rotate(-35deg); }
+        .seed:nth-child(2) { top: 15px; left: 120px; transform: rotate(15deg); }
+        .seed:nth-child(3) { top: 20px; left: 180px; transform: rotate(-10deg); }
+        .seed:nth-child(4) { top: 35px; left: 220px; transform: rotate(45deg); }
+        .seed:nth-child(5) { top: 45px; left: 90px; transform: rotate(-15deg); }
+        .seed:nth-child(6) { top: 40px; left: 150px; transform: rotate(20deg); }
+
+        /* Tomatoes */
+        .tomato-layer {
+            height: 20px;
+            display: flex;
+            justify-content: space-between;
+            background: transparent;
+            box-shadow: none;
+            width: 270px;
+        }
+        .tomato-slice {
+            width: 130px;
+            height: 100%;
+            background: var(--tomato);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        /* Lettuce (Wavy CSS implementation) */
+        .lettuce-layer {
+            height: 16px;
+            background: var(--lettuce);
+            border-radius: 8px;
+            width: 290px;
+        }
+        .lettuce-wave {
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-image: radial-gradient(circle at 10px -3px, transparent 12px, var(--lettuce) 13px);
+            background-size: 20px 20px;
+        }
+
+        /* Melted Cheese */
+        .cheese-layer {
+            height: 12px;
+            background: var(--cheese);
             border-radius: 4px;
+            width: 285px;
+            z-index: 2;
+        }
+        .melt {
+            position: absolute;
+            background: var(--cheese);
+            width: 24px;
+            height: 25px;
+            top: 6px;
+            border-radius: 0 0 12px 12px;
+        }
+        .melt.m1 { left: 40px; height: 20px; transform: skewX(-5deg); }
+        .melt.m2 { right: 60px; height: 32px; border-radius: 0 0 15px 15px; }
+
+        /* Patty */
+        .patty-layer {
+            height: 45px;
+            background: linear-gradient(135deg, #6b3d2b 0%, var(--patty) 100%);
+            border-radius: 18px;
+            border-bottom: 4px solid #422419;
+        }
+
+        /* Bottom Bun */
+        .bottom-bun {
+            height: 40px;
+            background: linear-gradient(180deg, var(--bun-bottom) 0%, #a85f1c) 100%;
+            border-radius: 10px 10px 40px 40px;
+        }
+
+        /* UI Meta Text */
+        .ui-label {
+            position: absolute;
+            color: #4e516a;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .ui-title { bottom: 40px; color: #a5a7b6; font-size: 14px; font-weight: bold; }
+        .ui-spec { top: 20px; left: 20px; }
+        .ui-ar { top: 20px; right: 20px; }
+
+        /* Hover Effect: Exploded View Assembly Animation */
+        .canvas:hover .burger-stack {
+            gap: 22px;
+        }
+        .canvas:hover .layer {
+            box-shadow: 0 15px 20px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
 
-<div class="canvas-container">
-    <canvas id="matrixCanvas"></canvas>
-</div>
-
-<script>
-const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas.getContext('2d');
-
-// Set high-DPI internal resolution for crisp rendering
-function initCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width * window.devicePixelRatio;
-    canvas.height = rect.height * window.devicePixelRatio;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-}
-
-// Procedural texture generator to mimic high-contrast wave/silhouette forms without external images
-function drawProceduralData(tempCtx, w, h) {
-    tempCtx.fillStyle = '#000';
-    tempCtx.fillRect(0, 0, w, h);
-    
-    // Base gradient representing sky/background depth
-    let skyGrad = tempCtx.createLinearGradient(0, 0, 0, h);
-    skyGrad.addColorStop(0, '#222');
-    skyGrad.addColorStop(0.4, '#000');
-    tempCtx.fillStyle = skyGrad;
-    tempCtx.fillRect(0, 0, w, h);
-
-    // Deep structural wave swoop curves
-    tempCtx.fillStyle = '#fff';
-    tempCtx.beginPath();
-    tempCtx.moveTo(0, h * 0.2);
-    tempCtx.bezierCurveTo(w * 0.4, h * 0.2, w * 0.3, h * 0.8, w, h * 0.9);
-    tempCtx.lineTo(w, h);
-    tempCtx.lineTo(0, h);
-    tempCtx.closePath();
-    tempCtx.fill();
-
-    // Surfer silhouette block
-    tempCtx.fillStyle = '#000';
-    tempCtx.beginPath();
-    tempCtx.ellipse(w * 0.55, h * 0.5, 12, 30, Math.PI / 4, 0, Math.PI * 2);
-    tempCtx.fill();
-    
-    // Surfboard element
-    tempCtx.fillStyle = '#fff';
-    tempCtx.beginPath();
-    tempCtx.ellipse(w * 0.53, h * 0.53, 6, 40, Math.PI / 3, 0, Math.PI * 2);
-    tempCtx.fill();
-}
-
-function renderMatrix() {
-    const rect = canvas.getBoundingClientRect();
-    const w = rect.width;
-    const h = rect.height;
-    
-    // Create an offscreen buffer to read pixel data from the procedural shape
-    const offscreen = document.createElement('canvas');
-    offscreen.width = 120; // Internal grid resolution (X axis)
-    offscreen.height = 180; // Internal grid resolution (Y axis - 4:6 ratio)
-    const oCtx = offscreen.getContext('2d');
-    
-    drawProceduralData(oCtx, offscreen.width, offscreen.height);
-    const imgData = oCtx.getImageData(0, 0, offscreen.width, offscreen.height);
-    
-    // Clear display canvas
-    ctx.fillStyle = '#0a0a0c';
-    ctx.fillRect(0, 0, w, h);
-    
-    const cellW = w / offscreen.width;
-    const cellH = h / offscreen.height;
-    
-    // Loop through buffer data and map to high-fidelity primitives
-    for (let y = 0; y < offscreen.height; y++) {
-        for (let x = 0; x < offscreen.width; x++) {
-            const i = (x + y * offscreen.width) * 4;
-            const r = imgData.data[i];
-            const g = imgData.data[i+1];
-            const b = imgData.data[i+2];
-            const brightness = (r + g + b) / 3;
-            
-            // Calculate screen coordinates
-            const posX = x * cellW + cellW / 2;
-            const posY = y * cellH + cellH / 2;
-            
-            if (brightness > 200) {
-                // Highlights: Render dense geometric blocks or bold ticks
-                ctx.fillStyle = '#ff6b00'; // High-impact accent color
-                ctx.fillRect(posX - cellW * 0.4, posY - cellH * 0.4, cellW * 0.8, cellH * 0.8);
-            } else if (brightness > 90) {
-                // Midtones: Clean vector cross-hatches or points
-                ctx.strokeStyle = '#44444a';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(posX - cellW * 0.3, posY);
-                ctx.lineTo(posX + cellW * 0.3, posY);
-                ctx.stroke();
-            } else if (brightness > 30) {
-                // Low-density shadows: Micro-dots
-                ctx.fillStyle = '#222227';
-                ctx.beginPath();
-                ctx.arc(posX, posY, cellW * 0.15, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            // Absolute blacks drop completely, leaving clean background negative space
-        }
-    }
-}
-
-// Lifecycle controllers
-initCanvas();
-renderMatrix();
-
-window.addEventListener('resize', () => {
-    initCanvas();
-    renderMatrix();
-});
-</script>
-
-</body>
-</html>
+    <div class="canvas">
+        <div class="ui-label ui-spec">SYS.GEN // CHEESEBURGER
