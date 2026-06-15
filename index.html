@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procedural CSS Illustration // Static & Interactive</title>
+    <title>Procedural CSS Illustration // Static Chiaroscuro</title>
     <style>
         :root {
-            /* Interactive offset factor controlled by scroll/mouse */
-            --spread: 0px;
-            
-            /* Color Palette */
+            /* Color Palette & Ambient Light Maps */
             --bg-main: #111116;
             --canvas-bg: #1e1e2f;
             --canvas-border: #3a3a50;
             --text-muted: #5a5a7a;
             --text-bright: #8a8ab0;
             
-            --bun-top: #e68a00;
-            --bun-bottom: #d37e00;
-            --tomato: #ff4444;
-            --lettuce: #2ecc71;
-            --cheese: #f1c40f;
-            --patty: #5c3a21;
-            --patty-shadow: #442a18;
+            /* Layer Ingredients with directional lighting built-in */
+            --bun-top-light: #f39c12;
+            --bun-top-dark: #cc7a00;
+            --bun-bottom-light: #ba6f00;
+            --bun-bottom-dark: #945800;
+            
+            --tomato-light: #ff5555;
+            --tomato-dark: #e62e2e;
+            --lettuce-light: #2ecc71;
+            --lettuce-dark: #27ae60;
+            --cheese-light: #f1c40f;
+            --cheese-dark: #d4ac0d;
+            
+            --patty-light: #6e4629;
+            --patty-dark: #462b19;
+            --patty-shadow: #2e1c10;
         }
 
         * {
@@ -35,11 +41,11 @@
             background-color: var(--bg-main);
             color: #fff;
             font-family: monospace;
-            min-height: 150vh; /* Extra height to allow scrolling interaction */
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 80px 20px;
+            padding: 20px;
         }
 
         /* Strict 4:6 Aspect Ratio Container */
@@ -56,11 +62,9 @@
             align-items: center;
             overflow: hidden;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            position: sticky; /* Keeps it locked in view while scrolling */
-            top: 10vh;
         }
 
-        /* Burger Stack Container */
+        /* Fixed Geometric Burger Stack */
         .burger-container {
             display: flex;
             flex-direction: column;
@@ -68,104 +72,121 @@
             justify-content: center;
             width: 100%;
             height: auto;
+            gap: 4px; /* Tight, structurally sound static assembly */
         }
 
-        /* THE MAGIC: GPU-Accelerated Hardware Transitions
-           Using transform instead of gap shifts the load entirely to the GPU compositor layer,
-           making it wildly lighter and more responsive than decoding a WebP file.
-        */
+        /* Base Structural Component Layer Engine */
         .layer {
             display: block;
             min-height: 20px;
-            border-radius: 6px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: transform; /* Signals browser to optimize via hardware */
-        }
-
-        /* Individual layer translations multiplied based on vertical position */
-        .l1 { transform: translateY(calc(var(--spread) * -2.5)); }
-        .l2 { transform: translateY(calc(var(--spread) * -1.5)); }
-        .l3 { transform: translateY(calc(var(--spread) * -0.6)); }
-        .l4 { transform: translateY(calc(var(--spread) * 0.2)); }
-        .l5 { transform: translateY(calc(var(--spread) * 1.2)); }
-        .l6 { transform: translateY(calc(var(--spread) * 2.2)); }
-
-        .bun-top {
-            width: 260px;
-            height: 70px;
-            background: var(--bun-top);
-            border-radius: 120px 120px 10px 10px;
+            border-radius: 8px;
             position: relative;
         }
 
+        /* 1. TOP BUN: Spherical Top-Down Light Arc */
+        .bun-top {
+            width: 260px;
+            height: 76px;
+            background: linear-gradient(180deg, var(--bun-top-light) 0%, var(--bun-top-dark) 100%);
+            border-radius: 120px 120px 14px 14px;
+            /* Inset shadow creates the internal global illumination rim highlight */
+            box-shadow: 
+                inset 0 6px 12px rgba(255, 255, 255, 0.3),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+            z-index: 6;
+        }
+
+        /* Procedural Seeds casting minor ambient shadows */
         .bun-top::before {
             content: "•  •  •  •  •";
             position: absolute;
-            top: 20px;
+            top: 22px;
             left: 0;
             width: 100%;
             text-align: center;
             color: #fff;
             font-size: 24px;
             letter-spacing: 15px;
-            opacity: 0.7;
+            opacity: 0.65;
+            text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
         }
 
+        /* 2. TOMATOES: Dual Cylindrical Falloff */
         .tomatoes {
             width: 250px;
-            height: 25px;
+            height: 26px;
             display: flex;
-            gap: 10px;
+            gap: 12px;
+            z-index: 5;
         }
-
         .tomato {
             flex: 1;
-            background: var(--tomato);
+            background: linear-gradient(180deg, var(--tomato-light) 0%, var(--tomato-dark) 100%);
             border-radius: 8px;
             height: 100%;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            box-shadow: 
+                inset 0 3px 6px rgba(255, 255, 255, 0.2),
+                0 6px 10px rgba(0, 0, 0, 0.35);
         }
 
+        /* 3. LETTUCE: Angular Edge Occlusion */
         .lettuce {
-            width: 270px;
-            height: 20px;
-            background: var(--lettuce);
-            border-radius: 20px 5px 20px 5px;
+            width: 272px;
+            height: 18px;
+            background: linear-gradient(180deg, var(--lettuce-light) 0%, var(--lettuce-dark) 100%);
+            border-radius: 20px 8px 20px 8px;
+            box-shadow: 
+                inset 0 3px 4px rgba(255, 255, 255, 0.2),
+                0 5px 8px rgba(0, 0, 0, 0.4);
+            z-index: 4;
         }
 
+        /* 4. CHEESE: Radiating Melt and Creep Lighting */
         .cheese {
-            width: 265px;
-            height: 15px;
-            background: var(--cheese);
-            position: relative;
+            width: 266px;
+            height: 14px;
+            background: linear-gradient(180deg, var(--cheese-light) 0%, var(--cheese-dark) 100%);
             border-radius: 4px;
+            box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.4);
+            z-index: 3;
         }
-
+        /* Melt Drop Extrusion with custom shadow casting */
         .cheese::after {
             content: '';
             position: absolute;
             top: 100%;
-            left: 30px;
-            width: 25px;
-            height: 20px;
-            background: var(--cheese);
+            left: 35px;
+            width: 24px;
+            height: 22px;
+            background: var(--cheese-dark);
             border-radius: 0 0 10px 10px;
+            box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.3);
         }
 
+        /* 5. PATTY: Deep Coarse Texture and Core Umbra Shadow */
         .patty {
-            width: 260px;
-            height: 50px;
-            background: var(--patty);
-            border-radius: 15px;
+            width: 262px;
+            height: 52px;
+            background: linear-gradient(180deg, var(--patty-light) 0%, var(--patty-dark) 100%);
+            border-radius: 16px;
             border-bottom: 6px solid var(--patty-shadow);
+            /* Casts a heavy, wide ambient drop shadow onto the lower bun */
+            box-shadow: 
+                inset 0 4px 6px rgba(255, 255, 255, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.6);
+            z-index: 2;
         }
 
+        /* 6. BOTTOM BUN: Base Terminated Light Falloff */
         .bun-bottom {
-            width: 255px;
-            height: 45px;
-            background: var(--bun-bottom);
-            border-radius: 6px 6px 40px 40px;
+            width: 256px;
+            height: 44px;
+            background: linear-gradient(180deg, var(--bun-bottom-light) 0%, var(--bun-bottom-dark) 100%);
+            border-radius: 4px 4px 40px 40px;
+            box-shadow: 
+                inset 0 3px 6px rgba(255, 255, 255, 0.15),
+                0 10px 20px rgba(0, 0, 0, 0.5);
+            z-index: 1;
         }
 
         /* UI Overlay Elements */
@@ -178,81 +199,28 @@
         .ui-top-left  { top: 25px; left: 25px; }
         .ui-top-right { top: 25px; right: 25px; }
         .ui-bottom    { bottom: 30px; color: var(--text-bright); font-weight: bold; }
-
-        /* Subtle scroll reminder helper */
-        .scroll-indicator {
-            margin-top: 20px;
-            color: var(--text-muted);
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
 
-    <div class="canvas" id="canvas">
+    <div class="canvas">
         <div class="ui-text ui-top-left">SPEC // 04-06.AR</div>
-        <div class="ui-text ui-top-right">RENDER: STATIC_INTERACTIVE</div>
+        <div class="ui-text ui-top-right">RENDER: STATIC_CHIAROSCURO</div>
 
         <div class="burger-container">
-            <div class="layer bun-top l1"></div>
-            <div class="layer tomatoes l2">
+            <div class="layer bun-top"></div>
+            <div class="layer tomatoes">
                 <div class="tomato"></div>
                 <div class="tomato"></div>
             </div>
-            <div class="layer lettuce l3"></div>
-            <div class="layer cheese l4"></div>
-            <div class="layer patty l5"></div>
-            <div class="layer bun-bottom l6"></div>
+            <div class="layer lettuce"></div>
+            <div class="layer cheese"></div>
+            <div class="layer patty"></div>
+            <div class="layer bun-bottom"></div>
         </div>
 
-        <div class="ui-text ui-bottom" id="ui-status">SYSTEM // ASSEMBLED</div>
+        <div class="ui-text ui-bottom">STATIC SYSTEM // ZERO_COMPUTE</div>
     </div>
-
-    <div class="scroll-indicator">↓ Scroll page or move mouse to expand schema ↓</div>
-
-    <script>
-        const root = document.documentElement;
-        const canvas = document.getElementById('canvas');
-        const statusText = document.getElementById('ui-status');
-        
-        // 1. Scroll Interaction (Calculates explosion scale based on viewport scroll)
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-            const spreadValue = Math.min(Math.max(scrollPercent * 60, 0), 45); // Max 45px separation
-            
-            root.style.setProperty('--spread', `${spreadValue}px`);
-            updateStatus(spreadValue);
-        });
-
-        // 2. Mouse Move Interaction (Overrides or adds minor play when hovering inside the canvas)
-        canvas.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const y = e.clientY - rect.top; // Mouse position inside canvas
-            const intensity = Math.abs((rect.height / 2) - y) / 4; // Distance from center
-            const spreadValue = Math.min(intensity, 35);
-            
-            root.style.setProperty('--spread', `${spreadValue}px`);
-            updateStatus(spreadValue);
-        });
-
-        // Reset spread when mouse leaves canvas (unless page is scrolled down)
-        canvas.addEventListener('mouseleave', () => {
-            if (window.scrollY === 0) {
-                root.style.setProperty('--spread', '0px');
-                statusText.innerText = "SYSTEM // ASSEMBLED";
-            }
-        });
-
-        function updateStatus(val) {
-            if (val > 5) {
-                statusText.innerText = `DECONSTRUCTING // DEPTH: ${Math.round(val * 2)}mm`;
-            } else {
-                statusText.innerText = "SYSTEM // ASSEMBLED";
-            }
-        }
-    </script>
 
 </body>
 </html>
